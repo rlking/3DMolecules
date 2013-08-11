@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "WaveObject.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -83,6 +84,9 @@ GLfloat gCubeVertexData[216] =
     
     GLuint _vertexArray;
     GLuint _vertexBuffer;
+    GLuint _normalBuffer;
+    
+    WaveObject *sphere;
 }
 @property (strong, nonatomic) EAGLContext *context;
 @property (strong, nonatomic) GLKBaseEffect *effect;
@@ -111,6 +115,8 @@ GLfloat gCubeVertexData[216] =
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
+    
+    sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere" ofType:@"obj"]];
     
     [self setupGL];
 }
@@ -150,21 +156,37 @@ GLfloat gCubeVertexData[216] =
     
     self.effect = [[GLKBaseEffect alloc] init];
     self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.4f, 0.4f, 1.0f);
+    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.0f, 0.0f, 1.0f);
     
     glEnable(GL_DEPTH_TEST);
     
     glGenVertexArraysOES(1, &_vertexArray);
     glBindVertexArrayOES(_vertexArray);
     
+//    glGenBuffers(1, &_vertexBuffer);
+//    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
+//    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
+//    
+//    glEnableVertexAttribArray(GLKVertexAttribPosition);
+//    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
+//    glEnableVertexAttribArray(GLKVertexAttribNormal);
+//    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
+    
+    
+    
+    
+
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-    
+    glBufferData(GL_ARRAY_BUFFER,sizeof(Vertex) * sphere->numIndices * 3, sphere->vertices2, GL_STATIC_DRAW);
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+    
+    glGenBuffers(1, &_normalBuffer);
+    glBindBuffer(GL_ARRAY_BUFFER, _normalBuffer);
+    glBufferData(GL_ARRAY_BUFFER,sizeof(Vertex) * sphere->numIndices * 3, sphere->normals2, GL_STATIC_DRAW);
     glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
     
     glBindVertexArrayOES(0);
 }
@@ -174,6 +196,7 @@ GLfloat gCubeVertexData[216] =
     [EAGLContext setCurrentContext:self.context];
     
     glDeleteBuffers(1, &_vertexBuffer);
+    glDeleteBuffers(1, &_normalBuffer);
     glDeleteVertexArraysOES(1, &_vertexArray);
     
     self.effect = nil;
@@ -204,7 +227,7 @@ GLfloat gCubeVertexData[216] =
     self.effect.transform.modelviewMatrix = modelViewMatrix;
     
     // Compute the model view matrix for the object rendered with ES2
-    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 1.5f);
+    modelViewMatrix = GLKMatrix4MakeTranslation(1.0f, 0.0f, 1.5f);
     modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
     modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
     
@@ -219,13 +242,14 @@ GLfloat gCubeVertexData[216] =
 {
     glClearColor(0.65f, 0.65f, 0.65f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
     
     glBindVertexArrayOES(_vertexArray);
     
     // Render the object with GLKit
     [self.effect prepareToDraw];
     
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
     
     // Render the object again with ES2
     glUseProgram(_program);
@@ -233,7 +257,9 @@ GLfloat gCubeVertexData[216] =
     glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
     glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
     
-    glDrawArrays(GL_TRIANGLES, 0, 36);
+    // triangle strip
+    // triangle fan
+    glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation

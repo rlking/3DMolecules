@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8017750417B6E80F00B5AA35 /* WaveObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8017750317B6E80F00B5AA35 /* WaveObject.m */; };
 		8028E15A17AD080D00EFBE74 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028E15917AD080D00EFBE74 /* UIKit.framework */; };
 		8028E15C17AD080D00EFBE74 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028E15B17AD080D00EFBE74 /* Foundation.framework */; };
 		8028E15E17AD080D00EFBE74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028E15D17AD080D00EFBE74 /* CoreGraphics.framework */; };
@@ -23,9 +24,12 @@
 		8028E17C17AD080D00EFBE74 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8028E17B17AD080D00EFBE74 /* Shader.fsh */; };
 		8028E17E17AD080D00EFBE74 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8028E17D17AD080D00EFBE74 /* Shader.vsh */; };
 		8028E18117AD080D00EFBE74 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8028E18017AD080D00EFBE74 /* ViewController.m */; };
+		80C886E817B7E6B900C1D6A0 /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 80C886E717B7E6B900C1D6A0 /* sphere.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8017750217B6E80F00B5AA35 /* WaveObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WaveObject.h; sourceTree = "<group>"; };
+		8017750317B6E80F00B5AA35 /* WaveObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WaveObject.m; sourceTree = "<group>"; };
 		8028E15617AD080D00EFBE74 /* testrenderer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testrenderer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8028E15917AD080D00EFBE74 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8028E15B17AD080D00EFBE74 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,6 +51,7 @@
 		8028E17D17AD080D00EFBE74 /* Shader.vsh */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.glsl; name = Shader.vsh; path = Shaders/Shader.vsh; sourceTree = "<group>"; };
 		8028E17F17AD080D00EFBE74 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8028E18017AD080D00EFBE74 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		80C886E717B7E6B900C1D6A0 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +102,7 @@
 		8028E16317AD080D00EFBE74 /* testrenderer */ = {
 			isa = PBXGroup;
 			children = (
+				80C886E717B7E6B900C1D6A0 /* sphere.obj */,
 				8028E16C17AD080D00EFBE74 /* AppDelegate.h */,
 				8028E16D17AD080D00EFBE74 /* AppDelegate.m */,
 				8028E17517AD080D00EFBE74 /* MainStoryboard_iPhone.storyboard */,
@@ -105,6 +111,8 @@
 				8028E17D17AD080D00EFBE74 /* Shader.vsh */,
 				8028E17F17AD080D00EFBE74 /* ViewController.h */,
 				8028E18017AD080D00EFBE74 /* ViewController.m */,
+				8017750217B6E80F00B5AA35 /* WaveObject.h */,
+				8017750317B6E80F00B5AA35 /* WaveObject.m */,
 				8028E16417AD080D00EFBE74 /* Supporting Files */,
 			);
 			path = testrenderer;
@@ -183,6 +191,7 @@
 				8028E17A17AD080D00EFBE74 /* MainStoryboard_iPad.storyboard in Resources */,
 				8028E17C17AD080D00EFBE74 /* Shader.fsh in Resources */,
 				8028E17E17AD080D00EFBE74 /* Shader.vsh in Resources */,
+				80C886E817B7E6B900C1D6A0 /* sphere.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +205,7 @@
 				8028E16A17AD080D00EFBE74 /* main.m in Sources */,
 				8028E16E17AD080D00EFBE74 /* AppDelegate.m in Sources */,
 				8028E18117AD080D00EFBE74 /* ViewController.m in Sources */,
+				8017750417B6E80F00B5AA35 /* WaveObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,6 +338,7 @@
 				8028E18617AD080D00EFBE74 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
