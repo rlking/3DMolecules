@@ -28,53 +28,6 @@ enum
     NUM_ATTRIBUTES
 };
 
-GLfloat gCubeVertexData[216] = 
-{
-    // Data layout for each line below is:
-    // positionX, positionY, positionZ,     normalX, normalY, normalZ,
-    0.5f, -0.5f, -0.5f,        1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, -0.5f,          1.0f, 0.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,         1.0f, 0.0f, 0.0f,
-    
-    0.5f, 0.5f, -0.5f,         0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    0.5f, 0.5f, 0.5f,          0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 1.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 1.0f, 0.0f,
-    
-    -0.5f, 0.5f, -0.5f,        -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, 0.5f, 0.5f,         -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, -0.5f,       -1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        -1.0f, 0.0f, 0.0f,
-    
-    -0.5f, -0.5f, -0.5f,       0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, -0.5f,        0.0f, -1.0f, 0.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, -1.0f, 0.0f,
-    
-    0.5f, 0.5f, 0.5f,          0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    0.5f, -0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, 0.5f, 0.5f,         0.0f, 0.0f, 1.0f,
-    -0.5f, -0.5f, 0.5f,        0.0f, 0.0f, 1.0f,
-    
-    0.5f, -0.5f, -0.5f,        0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    0.5f, 0.5f, -0.5f,         0.0f, 0.0f, -1.0f,
-    -0.5f, -0.5f, -0.5f,       0.0f, 0.0f, -1.0f,
-    -0.5f, 0.5f, -0.5f,        0.0f, 0.0f, -1.0f
-};
-
 @interface ViewController () {
     GLuint _program;
     
@@ -162,19 +115,6 @@ GLfloat gCubeVertexData[216] =
     
     glGenVertexArraysOES(1, &_vertexArray);
     glBindVertexArrayOES(_vertexArray);
-    
-//    glGenBuffers(1, &_vertexBuffer);
-//    glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
-//    glBufferData(GL_ARRAY_BUFFER, sizeof(gCubeVertexData), gCubeVertexData, GL_STATIC_DRAW);
-//    
-//    glEnableVertexAttribArray(GLKVertexAttribPosition);
-//    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(0));
-//    glEnableVertexAttribArray(GLKVertexAttribNormal);
-//    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 24, BUFFER_OFFSET(12));
-    
-    
-    
-    
 
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
@@ -205,6 +145,8 @@ GLfloat gCubeVertexData[216] =
         glDeleteProgram(_program);
         _program = 0;
     }
+    
+    [sphere free];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods

@@ -39,4 +39,5 @@ typedef struct {
     Vertex *normals2;
 }
 -(id) initFromPath:(NSString *)path;
+-(void) free;
 @end

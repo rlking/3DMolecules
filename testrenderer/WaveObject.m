@@ -131,7 +131,15 @@
         normals2[i * 3 + 2].y = normals[normalIndices[i].v3].y;
         normals2[i * 3 + 2].z = normals[normalIndices[i].v3].z;
     }
+}
 
+-(void) free {
+    free(vertices);
+    free(vertices2);
+    free(normals);
+    free(normals2);
+    free(vertexIndices);
+    free(normalIndices);
 }
 
 @end
