@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "WaveObject.h"
+#import "MolObject.h"
 
 #define BUFFER_OFFSET(i) ((char *)NULL + (i))
 
@@ -40,9 +41,11 @@ enum
     GLuint _normalBuffer;
     
     WaveObject *sphere;
+    MolObject *molObj;
 }
+
+@property (strong, nonatomic) NSMutableArray *effects;
 @property (strong, nonatomic) EAGLContext *context;
-@property (strong, nonatomic) GLKBaseEffect *effect;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -70,6 +73,9 @@ enum
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere" ofType:@"obj"]];
+    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
+    
+    self.effects = [NSMutableArray array];    
     
     [self setupGL];
 }
@@ -107,9 +113,12 @@ enum
     
     [self loadShaders];
     
-    self.effect = [[GLKBaseEffect alloc] init];
-    self.effect.light0.enabled = GL_TRUE;
-    self.effect.light0.diffuseColor = GLKVector4Make(1.0f, 0.0f, 0.0f, 1.0f);
+    for(u_int i=0; i < molObj->numAtoms; i++) {
+        GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+        effect.light0.enabled = GL_TRUE;
+        effect.light0.diffuseColor = [ViewController getColorFromAtomType:molObj->atoms[i].type];
+        [self.effects addObject:effect];
+    }
     
     glEnable(GL_DEPTH_TEST);
     
@@ -131,6 +140,28 @@ enum
     glBindVertexArrayOES(0);
 }
 
++(GLKVector4) getColorFromAtomType:(enum AtomType)type {
+    switch(type) {
+        case CARBON:
+            return GLKVector4Make(0.5f, 0.5f, 0.5f, 1.0f);
+            break;
+        case HYDROGEN:
+            return GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+            break;
+        case OXYGEN:
+            return GLKVector4Make(1.0f, 0.0f, 0.0f, 1.0f);
+            break;
+        case NITROGEN:
+            return GLKVector4Make(0.0f, 0.0f, 1.0f, 1.0f);
+            break;
+        case UNKNOWN:
+            return GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f);
+        default:
+            
+            break;
+    }
+}
+
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
@@ -139,7 +170,7 @@ enum
     glDeleteBuffers(1, &_normalBuffer);
     glDeleteVertexArraysOES(1, &_vertexArray);
     
-    self.effect = nil;
+    [self.effects removeAllObjects];
     
     if (_program) {
         glDeleteProgram(_program);
@@ -156,26 +187,32 @@ enum
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
-    self.effect.transform.projectionMatrix = projectionMatrix;
     
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -4.0f);
+    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -15.0f);
     baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
     
-    // Compute the model view matrix for the object rendered with GLKit
-    GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
     
-    self.effect.transform.modelviewMatrix = modelViewMatrix;
+    u_int i=0;
+    for(GLKBaseEffect *effect in self.effects){
+        effect.transform.projectionMatrix = projectionMatrix;
+        
+        GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(molObj->atoms[i].x,molObj->atoms[i].y, molObj->atoms[i].z);
+        //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
+        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        effect.transform.modelviewMatrix = modelViewMatrix;
+        
+        i++;
+    }
     
-    // Compute the model view matrix for the object rendered with ES2
-    modelViewMatrix = GLKMatrix4MakeTranslation(1.0f, 0.0f, 1.5f);
-    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-    
-    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
-    
-    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
+
+//    // Compute the model view matrix for the object rendered with ES2
+//    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 0.1344f);
+//    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
+//    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+//    
+//    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
+//    
+//    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
     _rotation += self.timeSinceLastUpdate * 0.5f;
 }
@@ -188,20 +225,20 @@ enum
     
     glBindVertexArrayOES(_vertexArray);
     
-    // Render the object with GLKit
-    [self.effect prepareToDraw];
+    for(GLKBaseEffect *effect in self.effects){
+        [effect prepareToDraw];
+        glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
+    }
     
-    glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
-    
-    // Render the object again with ES2
-    glUseProgram(_program);
-    
-    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
-    
-    // triangle strip
-    // triangle fan
-    glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
+//    // Render the object again with ES2
+//    glUseProgram(_program);
+//    
+//    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
+//    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
+//    
+//    // triangle strip
+//    // triangle fan
+//    glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
 }
 
 #pragma mark -  OpenGL ES 2 shader compilation

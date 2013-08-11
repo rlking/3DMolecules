@@ -25,6 +25,9 @@
 		8028E17E17AD080D00EFBE74 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8028E17D17AD080D00EFBE74 /* Shader.vsh */; };
 		8028E18117AD080D00EFBE74 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8028E18017AD080D00EFBE74 /* ViewController.m */; };
 		80C886E817B7E6B900C1D6A0 /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 80C886E717B7E6B900C1D6A0 /* sphere.obj */; };
+		80C886EA17B808C800C1D6A0 /* water.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80C886E917B808C800C1D6A0 /* water.mol */; };
+		80C886F017B80F7500C1D6A0 /* MolObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 80C886EF17B80F7500C1D6A0 /* MolObject.m */; };
+		80C886F217B83D1F00C1D6A0 /* meth.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80C886F117B83D1F00C1D6A0 /* meth.mol */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +55,10 @@
 		8028E17F17AD080D00EFBE74 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8028E18017AD080D00EFBE74 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		80C886E717B7E6B900C1D6A0 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
+		80C886E917B808C800C1D6A0 /* water.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = water.mol; sourceTree = SOURCE_ROOT; };
+		80C886EE17B80F7500C1D6A0 /* MolObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MolObject.h; sourceTree = "<group>"; };
+		80C886EF17B80F7500C1D6A0 /* MolObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MolObject.m; sourceTree = "<group>"; };
+		80C886F117B83D1F00C1D6A0 /* meth.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = meth.mol; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +109,10 @@
 		8028E16317AD080D00EFBE74 /* testrenderer */ = {
 			isa = PBXGroup;
 			children = (
+				80C886F117B83D1F00C1D6A0 /* meth.mol */,
+				80C886EE17B80F7500C1D6A0 /* MolObject.h */,
+				80C886EF17B80F7500C1D6A0 /* MolObject.m */,
+				80C886E917B808C800C1D6A0 /* water.mol */,
 				80C886E717B7E6B900C1D6A0 /* sphere.obj */,
 				8028E16C17AD080D00EFBE74 /* AppDelegate.h */,
 				8028E16D17AD080D00EFBE74 /* AppDelegate.m */,
@@ -192,6 +203,8 @@
 				8028E17C17AD080D00EFBE74 /* Shader.fsh in Resources */,
 				8028E17E17AD080D00EFBE74 /* Shader.vsh in Resources */,
 				80C886E817B7E6B900C1D6A0 /* sphere.obj in Resources */,
+				80C886EA17B808C800C1D6A0 /* water.mol in Resources */,
+				80C886F217B83D1F00C1D6A0 /* meth.mol in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +219,7 @@
 				8028E16E17AD080D00EFBE74 /* AppDelegate.m in Sources */,
 				8028E18117AD080D00EFBE74 /* ViewController.m in Sources */,
 				8017750417B6E80F00B5AA35 /* WaveObject.m in Sources */,
+				80C886F017B80F7500C1D6A0 /* MolObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
