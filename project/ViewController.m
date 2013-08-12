@@ -72,7 +72,7 @@ enum
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
-    sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere" ofType:@"obj"]];
+    sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
     molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
     
     self.effects = [NSMutableArray array];    
@@ -140,6 +140,7 @@ enum
     glBindVertexArrayOES(0);
 }
 
+// http://en.wikipedia.org/wiki/CPK_coloring
 +(GLKVector4) getColorFromAtomType:(enum AtomType)type {
     switch(type) {
         case CARBON:

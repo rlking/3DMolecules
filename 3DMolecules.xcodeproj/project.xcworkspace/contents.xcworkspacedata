@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:testrenderer.xcodeproj">
+      location = "self:3DMolecules.xcodeproj">
    </FileRef>
 </Workspace>
