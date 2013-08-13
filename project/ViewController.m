@@ -73,7 +73,7 @@ enum
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
+    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"atp" ofType:@"mol"]];
     
     self.effects = [NSMutableArray array];    
     
@@ -154,6 +154,9 @@ enum
             break;
         case NITROGEN:
             return GLKVector4Make(0.0f, 0.0f, 1.0f, 1.0f);
+            break;
+        case PHOSPHORUS:
+            return GLKVector4Make(1.0f, 0.6f, 0.0f, 1.0f);
             break;
         case UNKNOWN:
             return GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f);

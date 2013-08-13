@@ -13,6 +13,7 @@ enum AtomType {
     HYDROGEN,
     OXYGEN,
     NITROGEN,
+    PHOSPHORUS,
     UNKNOWN
 };
 

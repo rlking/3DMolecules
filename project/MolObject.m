@@ -70,6 +70,8 @@
         return OXYGEN;
     } else if([type isEqualToString:@"N"]) {
         return NITROGEN;
+    } else if([type isEqualToString:@"P"]) {
+        return PHOSPHORUS;
     }
     
     return UNKNOWN;

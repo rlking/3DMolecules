@@ -30,6 +30,9 @@
 		808B61E917B9A1A0009D4D90 /* sphere.obj in Resources */ = {isa = PBXBuildFile; fileRef = 808B61E017B9A1A0009D4D90 /* sphere.obj */; };
 		808B61EA17B9A1A0009D4D90 /* sphere_smooth.obj in Resources */ = {isa = PBXBuildFile; fileRef = 808B61E117B9A1A0009D4D90 /* sphere_smooth.obj */; };
 		808B61EB17B9A1A0009D4D90 /* water.mol in Resources */ = {isa = PBXBuildFile; fileRef = 808B61E217B9A1A0009D4D90 /* water.mol */; };
+		808B61ED17BA8FED009D4D90 /* sf6.mol in Resources */ = {isa = PBXBuildFile; fileRef = 808B61EC17BA8FED009D4D90 /* sf6.mol */; };
+		808B61EF17BA923D009D4D90 /* atp.mol in Resources */ = {isa = PBXBuildFile; fileRef = 808B61EE17BA923D009D4D90 /* atp.mol */; };
+		808B61F117BA94B2009D4D90 /* aspirin.mol in Resources */ = {isa = PBXBuildFile; fileRef = 808B61F017BA94B2009D4D90 /* aspirin.mol */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +65,9 @@
 		808B61E017B9A1A0009D4D90 /* sphere.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere.obj; sourceTree = "<group>"; };
 		808B61E117B9A1A0009D4D90 /* sphere_smooth.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sphere_smooth.obj; sourceTree = "<group>"; };
 		808B61E217B9A1A0009D4D90 /* water.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = water.mol; sourceTree = "<group>"; };
+		808B61EC17BA8FED009D4D90 /* sf6.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sf6.mol; sourceTree = "<group>"; };
+		808B61EE17BA923D009D4D90 /* atp.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atp.mol; sourceTree = "<group>"; };
+		808B61F017BA94B2009D4D90 /* aspirin.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aspirin.mol; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,11 +140,14 @@
 		808B61D717B9A1A0009D4D90 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				808B61F017BA94B2009D4D90 /* aspirin.mol */,
+				808B61EE17BA923D009D4D90 /* atp.mol */,
 				808B61D817B9A1A0009D4D90 /* images */,
-				808B61DC17B9A1A0009D4D90 /* meth.mol */,
 				808B61DD17B9A1A0009D4D90 /* shaders */,
 				808B61E017B9A1A0009D4D90 /* sphere.obj */,
+				808B61DC17B9A1A0009D4D90 /* meth.mol */,
 				808B61E117B9A1A0009D4D90 /* sphere_smooth.obj */,
+				808B61EC17BA8FED009D4D90 /* sf6.mol */,
 				808B61E217B9A1A0009D4D90 /* water.mol */,
 			);
 			path = resources;
@@ -225,6 +234,9 @@
 				808B61E917B9A1A0009D4D90 /* sphere.obj in Resources */,
 				808B61EA17B9A1A0009D4D90 /* sphere_smooth.obj in Resources */,
 				808B61EB17B9A1A0009D4D90 /* water.mol in Resources */,
+				808B61ED17BA8FED009D4D90 /* sf6.mol in Resources */,
+				808B61EF17BA923D009D4D90 /* atp.mol in Resources */,
+				808B61F117BA94B2009D4D90 /* aspirin.mol in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
