@@ -13,6 +13,8 @@
 @interface ViewController () {
     float _rotation;
     float _scale;
+    float _x;
+    float _y;
     
     GLuint _vertexArray;
     GLuint _vertexBuffer;
@@ -69,12 +71,20 @@ float _origScale = 0.0f;
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         _origScale = _scale;
     }
-    _scale = _origScale * recognizer.scale;
+    _scale = _origScale / recognizer.scale;
 }
 
+float _origX;
+float _origY;
 -(void) respondToPanGesture:(UIPanGestureRecognizer *)recognizer {
     CGPoint p = [recognizer translationInView:self.view];
-    //NSLog(@"pan gesture: x:%f y:%f", p.x, p.y);
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        _origX = _x;
+        _origY = _y;
+    }
+    _x = _origX + p.x / 100;
+    _y = _origY + p.y / 100;
+    NSLog(@"pan gesture: x:%f y:%f", p.x, p.y);
 }
 
 - (void)dealloc
@@ -170,8 +180,6 @@ float _origScale = 0.0f;
     glDeleteVertexArraysOES(1, &_vertexArray);
     
     [self.effects removeAllObjects];
-    
-    [sphere free];
 }
 
 #pragma mark - GLKView and GLKViewController delegate methods
@@ -183,7 +191,10 @@ float _origScale = 0.0f;
     
     
     GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -15.0f * _scale);
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
+    //x
+    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _x, 0.0f, 1.0f, 0.0f);
+    //y
+    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _y, 1.0f, 0.0f, 0.0f);
     
     
     u_int i=0;

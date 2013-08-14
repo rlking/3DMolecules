@@ -57,7 +57,7 @@
         atoms[i - 4].z = [parsedSplitLine[2] floatValue];
         atoms[i - 4].type = [MolObject getAtomTypeFrom:parsedSplitLine[3]];
          
-        NSLog(@"i: %u x: %f y: %f z: %f", i - 4, atoms[i - 4].x,atoms[i - 4].y,atoms[i - 4].z);
+        //NSLog(@"i: %u x: %f y: %f z: %f", i - 4, atoms[i - 4].x,atoms[i - 4].y,atoms[i - 4].z);
     }
 }
 

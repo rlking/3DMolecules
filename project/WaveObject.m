@@ -51,7 +51,7 @@
     vertexIndices = malloc(sizeof(Face) * numIndices);
     normalIndices = malloc(sizeof(Face) * numIndices);
     
-    NSLog(@"vertices: %u normals %u indices: %u", numVertices, numNormals, numIndices);
+    //NSLog(@"vertices: %u normals %u indices: %u", numVertices, numNormals, numIndices);
     
     
     u_int loopVerticesCount = 0;
@@ -133,7 +133,7 @@
     }
 }
 
--(void) free {
+-(void) dealloc {
     free(vertices);
     free(vertices2);
     free(normals);
