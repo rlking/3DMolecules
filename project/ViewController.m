@@ -10,31 +10,9 @@
 #import "WaveObject.h"
 #import "MolObject.h"
 
-#define BUFFER_OFFSET(i) ((char *)NULL + (i))
-
-// Uniform index.
-enum
-{
-    UNIFORM_MODELVIEWPROJECTION_MATRIX,
-    UNIFORM_NORMAL_MATRIX,
-    NUM_UNIFORMS
-};
-GLint uniforms[NUM_UNIFORMS];
-
-// Attribute index.
-enum
-{
-    ATTRIB_VERTEX,
-    ATTRIB_NORMAL,
-    NUM_ATTRIBUTES
-};
-
 @interface ViewController () {
-    GLuint _program;
-    
-    GLKMatrix4 _modelViewProjectionMatrix;
-    GLKMatrix3 _normalMatrix;
     float _rotation;
+    float _scale;
     
     GLuint _vertexArray;
     GLuint _vertexBuffer;
@@ -50,10 +28,6 @@ enum
 - (void)setupGL;
 - (void)tearDownGL;
 
-- (BOOL)loadShaders;
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file;
-- (BOOL)linkProgram:(GLuint)prog;
-- (BOOL)validateProgram:(GLuint)prog;
 @end
 
 @implementation ViewController
@@ -73,11 +47,34 @@ enum
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"atp" ofType:@"mol"]];
+    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"water" ofType:@"mol"]];
     
-    self.effects = [NSMutableArray array];    
+    self.effects = [NSMutableArray array];
+    _scale = 1.0f;
+    
+    UIPinchGestureRecognizer *pinchRecognize = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPinchGesture:)];
+    [self.view addGestureRecognizer:pinchRecognize];
+    UIPanGestureRecognizer *panRecognize = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPanGesture:)];
+    panRecognize.maximumNumberOfTouches = 1;
+    [self.view addGestureRecognizer:panRecognize];
+
     
     [self setupGL];
+}
+
+
+float _origScale = 0.0f;
+-(void) respondToPinchGesture:(UIPinchGestureRecognizer *)recognizer {
+    //NSLog(@"pinch gesture: velo: %f scale: %f state: %d", recognizer.velocity, recognizer.scale, recognizer.state);
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        _origScale = _scale;
+    }
+    _scale = _origScale * recognizer.scale;
+}
+
+-(void) respondToPanGesture:(UIPanGestureRecognizer *)recognizer {
+    CGPoint p = [recognizer translationInView:self.view];
+    //NSLog(@"pan gesture: x:%f y:%f", p.x, p.y);
 }
 
 - (void)dealloc
@@ -111,12 +108,10 @@ enum
 {
     [EAGLContext setCurrentContext:self.context];
     
-    [self loadShaders];
-    
     for(u_int i=0; i < molObj->numAtoms; i++) {
         GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
         effect.light0.enabled = GL_TRUE;
-        effect.light0.diffuseColor = [ViewController getColorFromAtomType:molObj->atoms[i].type];
+        effect.light0.diffuseColor = [ViewController getColorForAtomType:molObj->atoms[i].type];
         [self.effects addObject:effect];
     }
     
@@ -129,19 +124,19 @@ enum
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER,sizeof(Vertex) * sphere->numIndices * 3, sphere->vertices2, GL_STATIC_DRAW);
     glEnableVertexAttribArray(GLKVertexAttribPosition);
-    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+    glVertexAttribPointer(GLKVertexAttribPosition, 3, GL_FLOAT, GL_FALSE, 0, 0);
     
     glGenBuffers(1, &_normalBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _normalBuffer);
     glBufferData(GL_ARRAY_BUFFER,sizeof(Vertex) * sphere->numIndices * 3, sphere->normals2, GL_STATIC_DRAW);
     glEnableVertexAttribArray(GLKVertexAttribNormal);
-    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 0, BUFFER_OFFSET(0));
+    glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
     
     glBindVertexArrayOES(0);
 }
 
 // http://en.wikipedia.org/wiki/CPK_coloring
-+(GLKVector4) getColorFromAtomType:(enum AtomType)type {
++(GLKVector4) getColorForAtomType:(enum AtomType)type {
     switch(type) {
         case CARBON:
             return GLKVector4Make(0.5f, 0.5f, 0.5f, 1.0f);
@@ -176,11 +171,6 @@ enum
     
     [self.effects removeAllObjects];
     
-    if (_program) {
-        glDeleteProgram(_program);
-        _program = 0;
-    }
-    
     [sphere free];
 }
 
@@ -192,7 +182,7 @@ enum
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
     
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -15.0f);
+    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -15.0f * _scale);
     baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _rotation, 0.0f, 1.0f, 0.0f);
     
     
@@ -207,16 +197,6 @@ enum
         
         i++;
     }
-    
-
-//    // Compute the model view matrix for the object rendered with ES2
-//    modelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, 0.1344f);
-//    modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-//    modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
-//    
-//    _normalMatrix = GLKMatrix3InvertAndTranspose(GLKMatrix4GetMatrix3(modelViewMatrix), NULL);
-//    
-//    _modelViewProjectionMatrix = GLKMatrix4Multiply(projectionMatrix, modelViewMatrix);
     
     _rotation += self.timeSinceLastUpdate * 0.5f;
 }
@@ -233,168 +213,6 @@ enum
         [effect prepareToDraw];
         glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
     }
-    
-//    // Render the object again with ES2
-//    glUseProgram(_program);
-//    
-//    glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, _modelViewProjectionMatrix.m);
-//    glUniformMatrix3fv(uniforms[UNIFORM_NORMAL_MATRIX], 1, 0, _normalMatrix.m);
-//    
-//    // triangle strip
-//    // triangle fan
-//    glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
-}
-
-#pragma mark -  OpenGL ES 2 shader compilation
-
-- (BOOL)loadShaders
-{
-    GLuint vertShader, fragShader;
-    NSString *vertShaderPathname, *fragShaderPathname;
-    
-    // Create shader program.
-    _program = glCreateProgram();
-    
-    // Create and compile vertex shader.
-    vertShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"vsh"];
-    if (![self compileShader:&vertShader type:GL_VERTEX_SHADER file:vertShaderPathname]) {
-        NSLog(@"Failed to compile vertex shader");
-        return NO;
-    }
-    
-    // Create and compile fragment shader.
-    fragShaderPathname = [[NSBundle mainBundle] pathForResource:@"Shader" ofType:@"fsh"];
-    if (![self compileShader:&fragShader type:GL_FRAGMENT_SHADER file:fragShaderPathname]) {
-        NSLog(@"Failed to compile fragment shader");
-        return NO;
-    }
-    
-    // Attach vertex shader to program.
-    glAttachShader(_program, vertShader);
-    
-    // Attach fragment shader to program.
-    glAttachShader(_program, fragShader);
-    
-    // Bind attribute locations.
-    // This needs to be done prior to linking.
-    glBindAttribLocation(_program, GLKVertexAttribPosition, "position");
-    glBindAttribLocation(_program, GLKVertexAttribNormal, "normal");
-    
-    // Link program.
-    if (![self linkProgram:_program]) {
-        NSLog(@"Failed to link program: %d", _program);
-        
-        if (vertShader) {
-            glDeleteShader(vertShader);
-            vertShader = 0;
-        }
-        if (fragShader) {
-            glDeleteShader(fragShader);
-            fragShader = 0;
-        }
-        if (_program) {
-            glDeleteProgram(_program);
-            _program = 0;
-        }
-        
-        return NO;
-    }
-    
-    // Get uniform locations.
-    uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = glGetUniformLocation(_program, "modelViewProjectionMatrix");
-    uniforms[UNIFORM_NORMAL_MATRIX] = glGetUniformLocation(_program, "normalMatrix");
-    
-    // Release vertex and fragment shaders.
-    if (vertShader) {
-        glDetachShader(_program, vertShader);
-        glDeleteShader(vertShader);
-    }
-    if (fragShader) {
-        glDetachShader(_program, fragShader);
-        glDeleteShader(fragShader);
-    }
-    
-    return YES;
-}
-
-- (BOOL)compileShader:(GLuint *)shader type:(GLenum)type file:(NSString *)file
-{
-    GLint status;
-    const GLchar *source;
-    
-    source = (GLchar *)[[NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:nil] UTF8String];
-    if (!source) {
-        NSLog(@"Failed to load vertex shader");
-        return NO;
-    }
-    
-    *shader = glCreateShader(type);
-    glShaderSource(*shader, 1, &source, NULL);
-    glCompileShader(*shader);
-    
-#if defined(DEBUG)
-    GLint logLength;
-    glGetShaderiv(*shader, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetShaderInfoLog(*shader, logLength, &logLength, log);
-        NSLog(@"Shader compile log:\n%s", log);
-        free(log);
-    }
-#endif
-    
-    glGetShaderiv(*shader, GL_COMPILE_STATUS, &status);
-    if (status == 0) {
-        glDeleteShader(*shader);
-        return NO;
-    }
-    
-    return YES;
-}
-
-- (BOOL)linkProgram:(GLuint)prog
-{
-    GLint status;
-    glLinkProgram(prog);
-    
-#if defined(DEBUG)
-    GLint logLength;
-    glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetProgramInfoLog(prog, logLength, &logLength, log);
-        NSLog(@"Program link log:\n%s", log);
-        free(log);
-    }
-#endif
-    
-    glGetProgramiv(prog, GL_LINK_STATUS, &status);
-    if (status == 0) {
-        return NO;
-    }
-    
-    return YES;
-}
-
-- (BOOL)validateProgram:(GLuint)prog
-{
-    GLint logLength, status;
-    
-    glValidateProgram(prog);
-    glGetProgramiv(prog, GL_INFO_LOG_LENGTH, &logLength);
-    if (logLength > 0) {
-        GLchar *log = (GLchar *)malloc(logLength);
-        glGetProgramInfoLog(prog, logLength, &logLength, log);
-        NSLog(@"Program validate log:\n%s", log);
-        free(log);
-    }
-    
-    glGetProgramiv(prog, GL_VALIDATE_STATUS, &status);
-    if (status == 0) {
-        return NO;
-    }
-    
-    return YES;
 }
 
 @end
