@@ -14,6 +14,8 @@ enum AtomType {
     OXYGEN,
     NITROGEN,
     PHOSPHORUS,
+    SULFUR,
+    FLUOR,
     UNKNOWN
 };
 

@@ -49,7 +49,7 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"atp" ofType:@"mol"]];
+    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
     
     self.effects = [NSMutableArray array];
     _scale = 1.0f;
@@ -163,10 +163,15 @@ float _origY;
         case PHOSPHORUS:
             return GLKVector4Make(1.0f, 0.6f, 0.0f, 1.0f);
             break;
+        case SULFUR:
+            return GLKVector4Make(1.0f, 0.9f, 0.0f, 1.0f);
+            break;
+        case FLUOR:
+            return GLKVector4Make(0.0f, 1.0f, 0.0f, 1.0f);
+            break;
         case UNKNOWN:
-            return GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f);
         default:
-            
+            return GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f);
             break;
     }
 }
@@ -187,6 +192,12 @@ float _origY;
             break;
         case PHOSPHORUS:
             return 180;
+            break;
+        case SULFUR:
+            return 180;
+            break;
+        case FLUOR:
+            return 150;
             break;
         case UNKNOWN:
         default:

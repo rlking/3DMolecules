@@ -72,6 +72,10 @@
         return NITROGEN;
     } else if([type isEqualToString:@"P"]) {
         return PHOSPHORUS;
+    } else if([type isEqualToString:@"S"]) {
+        return SULFUR;
+    } else if([type isEqualToString:@"F"]) {
+        return FLUOR;
     }
     
     return UNKNOWN;
