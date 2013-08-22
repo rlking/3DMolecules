@@ -49,7 +49,7 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"water" ofType:@"mol"]];
+    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"atp" ofType:@"mol"]];
     
     self.effects = [NSMutableArray array];
     _scale = 1.0f;
@@ -84,7 +84,7 @@ float _origY;
     }
     _x = _origX + p.x / 100;
     _y = _origY + p.y / 100;
-    NSLog(@"pan gesture: x:%f y:%f", p.x, p.y);
+    //NSLog(@"pan gesture: x:%f y:%f", p.x, p.y);
 }
 
 - (void)dealloc
@@ -171,6 +171,30 @@ float _origY;
     }
 }
 
++(u_int) getAtomRadius:(enum AtomType)type {
+    switch(type) {
+        case CARBON:
+            return 170; // van-der-waals-radius
+            break;
+        case HYDROGEN:
+            return 110;
+            break;
+        case OXYGEN:
+            return 152;
+            break;
+        case NITROGEN:
+            return 155;
+            break;
+        case PHOSPHORUS:
+            return 180;
+            break;
+        case UNKNOWN:
+        default:
+            return 100;
+            break;
+    }
+}
+
 - (void)tearDownGL
 {
     [EAGLContext setCurrentContext:self.context];
@@ -201,7 +225,12 @@ float _origY;
     for(GLKBaseEffect *effect in self.effects){
         effect.transform.projectionMatrix = projectionMatrix;
         
-        GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(molObj->atoms[i].x,molObj->atoms[i].y, molObj->atoms[i].z);
+        GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(molObj->atoms[i].x, molObj->atoms[i].y, molObj->atoms[i].z);
+        
+        u_int radH = [ViewController getAtomRadius:HYDROGEN];
+        float radScale = [ViewController getAtomRadius:molObj->atoms[i].type] / (float)radH;
+        
+        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, radScale, radScale, radScale);
         //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
         modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
         effect.transform.modelviewMatrix = modelViewMatrix;
@@ -209,7 +238,7 @@ float _origY;
         i++;
     }
     
-    _rotation += self.timeSinceLastUpdate * 0.5f;
+    //_rotation += self.timeSinceLastUpdate * 0.5f;
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
