@@ -81,6 +81,67 @@
     return UNKNOWN;
 }
 
+// http://en.wikipedia.org/wiki/CPK_coloring
++(GLKVector4) getColorForAtomType:(enum AtomType)type {
+    switch(type) {
+        case CARBON:
+            return GLKVector4Make(0.5f, 0.5f, 0.5f, 1.0f);
+            break;
+        case HYDROGEN:
+            return GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
+            break;
+        case OXYGEN:
+            return GLKVector4Make(1.0f, 0.0f, 0.0f, 1.0f);
+            break;
+        case NITROGEN:
+            return GLKVector4Make(0.0f, 0.0f, 1.0f, 1.0f);
+            break;
+        case PHOSPHORUS:
+            return GLKVector4Make(1.0f, 0.6f, 0.0f, 1.0f);
+            break;
+        case SULFUR:
+            return GLKVector4Make(1.0f, 0.9f, 0.0f, 1.0f);
+            break;
+        case FLUOR:
+            return GLKVector4Make(0.0f, 1.0f, 0.0f, 1.0f);
+            break;
+        case UNKNOWN:
+        default:
+            return GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f);
+            break;
+    }
+}
+
++(u_int) getAtomRadius:(enum AtomType)type {
+    switch(type) {
+        case CARBON:
+            return 170; // van-der-waals-radius
+            break;
+        case HYDROGEN:
+            return 110;
+            break;
+        case OXYGEN:
+            return 152;
+            break;
+        case NITROGEN:
+            return 155;
+            break;
+        case PHOSPHORUS:
+            return 180;
+            break;
+        case SULFUR:
+            return 180;
+            break;
+        case FLUOR:
+            return 150;
+            break;
+        case UNKNOWN:
+        default:
+            return 100;
+            break;
+    }
+}
+
 - (void)dealloc
 {
     free(atoms);

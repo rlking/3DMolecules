@@ -49,7 +49,7 @@
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
+    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"atp" ofType:@"mol"]];
     
     self.effects = [NSMutableArray array];
     _scale = 1.0f;
@@ -121,7 +121,7 @@ float _origY;
     for(u_int i=0; i < molObj->numAtoms; i++) {
         GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
         effect.light0.enabled = GL_TRUE;
-        effect.light0.diffuseColor = [ViewController getColorForAtomType:molObj->atoms[i].type];
+        effect.light0.diffuseColor = [MolObject getColorForAtomType:molObj->atoms[i].type];
         [self.effects addObject:effect];
     }
     
@@ -143,67 +143,6 @@ float _origY;
     glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
     
     glBindVertexArrayOES(0);
-}
-
-// http://en.wikipedia.org/wiki/CPK_coloring
-+(GLKVector4) getColorForAtomType:(enum AtomType)type {
-    switch(type) {
-        case CARBON:
-            return GLKVector4Make(0.5f, 0.5f, 0.5f, 1.0f);
-            break;
-        case HYDROGEN:
-            return GLKVector4Make(1.0f, 1.0f, 1.0f, 1.0f);
-            break;
-        case OXYGEN:
-            return GLKVector4Make(1.0f, 0.0f, 0.0f, 1.0f);
-            break;
-        case NITROGEN:
-            return GLKVector4Make(0.0f, 0.0f, 1.0f, 1.0f);
-            break;
-        case PHOSPHORUS:
-            return GLKVector4Make(1.0f, 0.6f, 0.0f, 1.0f);
-            break;
-        case SULFUR:
-            return GLKVector4Make(1.0f, 0.9f, 0.0f, 1.0f);
-            break;
-        case FLUOR:
-            return GLKVector4Make(0.0f, 1.0f, 0.0f, 1.0f);
-            break;
-        case UNKNOWN:
-        default:
-            return GLKVector4Make(0.0f, 0.0f, 0.0f, 1.0f);
-            break;
-    }
-}
-
-+(u_int) getAtomRadius:(enum AtomType)type {
-    switch(type) {
-        case CARBON:
-            return 170; // van-der-waals-radius
-            break;
-        case HYDROGEN:
-            return 110;
-            break;
-        case OXYGEN:
-            return 152;
-            break;
-        case NITROGEN:
-            return 155;
-            break;
-        case PHOSPHORUS:
-            return 180;
-            break;
-        case SULFUR:
-            return 180;
-            break;
-        case FLUOR:
-            return 150;
-            break;
-        case UNKNOWN:
-        default:
-            return 100;
-            break;
-    }
 }
 
 - (void)tearDownGL
@@ -238,8 +177,8 @@ float _origY;
         
         GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(molObj->atoms[i].x, molObj->atoms[i].y, molObj->atoms[i].z);
         
-        u_int radH = [ViewController getAtomRadius:HYDROGEN];
-        float radScale = [ViewController getAtomRadius:molObj->atoms[i].type] / (float)radH;
+        u_int radH = [MolObject getAtomRadius:HYDROGEN];
+        float radScale = [MolObject getAtomRadius:molObj->atoms[i].type] / (float)radH;
         
         modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, radScale, radScale, radScale);
         //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);

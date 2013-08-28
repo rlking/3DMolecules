@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <GLKit/GLKit.h>
 
 enum AtomType {
     CARBON,
@@ -34,5 +35,7 @@ typedef struct {
 }
 
 -(id) initFromPath:(NSString *)path;
++(u_int) getAtomRadius:(enum AtomType)type;
++(GLKVector4) getColorForAtomType:(enum AtomType)type;
 
 @end
