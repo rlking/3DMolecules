@@ -67,13 +67,13 @@
     [self setupGL];
 }
 
-float _originalScale;
+float _origScale;
 -(void) respondToPinchGesture:(UIPinchGestureRecognizer *)recognizer {
     //NSLog(@"pinch gesture: velo: %f scale: %f state: %d", recognizer.velocity, recognizer.scale, recognizer.state);
 	if (recognizer.state == UIGestureRecognizerStateBegan) {
-        _originalScale = GLKVector3Length(_position);
+        _origScale = GLKVector3Length(_position);
 	}	
-	float newScale = _originalScale / recognizer.scale;
+	float newScale = _origScale / recognizer.scale;
 	_position = GLKVector3MultiplyScalar(GLKVector3Normalize(_position), newScale);
 }
 
@@ -87,14 +87,14 @@ float _lastPy;
     }
 	
 	{
-		GLKMatrix4 rotation_x = GLKMatrix4MakeRotation(-(p.x - _lastPx) / 10.0f, _up.x, _up.y, _up.z);
+		GLKMatrix4 rotation_x = GLKMatrix4MakeRotation(-(p.x - _lastPx) / 100.0f, _up.x, _up.y, _up.z);
 		
 		_right = GLKMatrix4MultiplyVector3(rotation_x, _right);
 		_position = GLKMatrix4MultiplyVector3(rotation_x, _position);
 	}
 		
 	{
-		GLKMatrix4 rotation_y = GLKMatrix4MakeRotation(-(p.y - _lastPy) / 10.0f, _right.x, _right.y, _right.z);
+		GLKMatrix4 rotation_y = GLKMatrix4MakeRotation(-(p.y - _lastPy) / 100.0f, _right.x, _right.y, _right.z);
 		
 		_up = GLKMatrix4MultiplyVector3(rotation_y, _up);
 		_position = GLKMatrix4MultiplyVector3(rotation_y, _position);
