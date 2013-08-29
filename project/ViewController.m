@@ -191,11 +191,12 @@ float _lastPy;
         
         GLKMatrix4 modelMatrix = GLKMatrix4MakeTranslation(molObj->atoms[i].x, molObj->atoms[i].y, molObj->atoms[i].z);
         
-        //u_int radH = [MolObject getAtomRadius:HYDROGEN];
-        //float radScale = [MolObject getAtomRadius:molObj->atoms[i].type] / (float)radH;
+        u_int radH = [MolObject getAtomRadius:HYDROGEN];
+        float radScale = [MolObject getAtomRadius:molObj->atoms[i].type] / (float)radH;
         
-        GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(viewMatrix, modelMatrix);
-        effect.transform.modelviewMatrix = modelViewMatrix;
+        modelMatrix = GLKMatrix4Scale(modelMatrix, radScale, radScale, radScale);
+        modelMatrix = GLKMatrix4Multiply(viewMatrix, modelMatrix);
+        effect.transform.modelviewMatrix = modelMatrix;
         
         i++;
     }
