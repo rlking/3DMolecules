@@ -10,18 +10,18 @@
 #import "WaveObject.h"
 #import "MolObject.h"
 
-@interface ViewController () {
-    float _rotation;
-    float _scale;
-    float _x;
-    float _y;
-    
+@interface ViewController () {    
     GLuint _vertexArray;
     GLuint _vertexBuffer;
     GLuint _normalBuffer;
     
     WaveObject *sphere;
     MolObject *molObj;
+
+	GLKVector3 _position;
+	
+	GLKVector3 _up;
+	GLKVector3 _right;
 }
 
 @property (strong, nonatomic) NSMutableArray *effects;
@@ -44,6 +44,10 @@
         NSLog(@"Failed to create ES context");
     }
     
+	_position	= GLKVector3Make(0.0f, 0.0f, 15.0f);
+	_up			= GLKVector3Make(0.0f, 1.0f,  0.0f);
+	_right		= GLKVector3Make(1.0f, 0.0f,  0.0f);
+	
     GLKView *view = (GLKView *)self.view;
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
@@ -52,7 +56,6 @@
     molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"atp" ofType:@"mol"]];
     
     self.effects = [NSMutableArray array];
-    _scale = 1.0f;
     
     UIPinchGestureRecognizer *pinchRecognize = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPinchGesture:)];
     [self.view addGestureRecognizer:pinchRecognize];
@@ -64,26 +67,42 @@
     [self setupGL];
 }
 
-
-float _origScale = 0.0f;
+float _originalScale;
 -(void) respondToPinchGesture:(UIPinchGestureRecognizer *)recognizer {
     //NSLog(@"pinch gesture: velo: %f scale: %f state: %d", recognizer.velocity, recognizer.scale, recognizer.state);
-    if (recognizer.state == UIGestureRecognizerStateBegan) {
-        _origScale = _scale;
-    }
-    _scale = _origScale / recognizer.scale;
+	if (recognizer.state == UIGestureRecognizerStateBegan) {
+        _originalScale = GLKVector3Length(_position);
+	}	
+	float newScale = _originalScale / recognizer.scale;
+	_position = GLKVector3MultiplyScalar(GLKVector3Normalize(_position), newScale);
 }
 
-float _origX;
-float _origY;
+float _lastPx;
+float _lastPy;
 -(void) respondToPanGesture:(UIPanGestureRecognizer *)recognizer {
     CGPoint p = [recognizer translationInView:self.view];
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        _origX = _x;
-        _origY = _y;
+        _lastPx = 0.0f;
+		_lastPy = 0.0f;
     }
-    _x = _origX + p.x / 100;
-    _y = _origY + p.y / 100;
+	
+	{
+		GLKMatrix4 rotation_x = GLKMatrix4MakeRotation(-(p.x - _lastPx) / 10.0f, _up.x, _up.y, _up.z);
+		
+		_right = GLKMatrix4MultiplyVector3(rotation_x, _right);
+		_position = GLKMatrix4MultiplyVector3(rotation_x, _position);
+	}
+		
+	{
+		GLKMatrix4 rotation_y = GLKMatrix4MakeRotation(-(p.y - _lastPy) / 10.0f, _right.x, _right.y, _right.z);
+		
+		_up = GLKMatrix4MultiplyVector3(rotation_y, _up);
+		_position = GLKMatrix4MultiplyVector3(rotation_y, _position);
+	}
+		
+	_lastPx = p.x;
+	_lastPy = p.y;
+	
     //NSLog(@"pan gesture: x:%f y:%f", p.x, p.y);
 }
 
@@ -163,26 +182,19 @@ float _origY;
     float aspect = fabsf(self.view.bounds.size.width / self.view.bounds.size.height);
     GLKMatrix4 projectionMatrix = GLKMatrix4MakePerspective(GLKMathDegreesToRadians(65.0f), aspect, 0.1f, 100.0f);
     
-    
-    GLKMatrix4 baseModelViewMatrix = GLKMatrix4MakeTranslation(0.0f, 0.0f, -15.0f * _scale);
-    //x
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _x, 0.0f, 1.0f, 0.0f);
-    //y
-    baseModelViewMatrix = GLKMatrix4Rotate(baseModelViewMatrix, _y, 1.0f, 0.0f, 0.0f);
+	GLKMatrix4 viewMatrix = GLKMatrix4MakeLookAt(_position.x, _position.y, _position.z, 0.0f, 0.0f, 0.0f, _up.x, _up.y, _up.z);
     
     
     u_int i=0;
     for(GLKBaseEffect *effect in self.effects){
         effect.transform.projectionMatrix = projectionMatrix;
         
-        GLKMatrix4 modelViewMatrix = GLKMatrix4MakeTranslation(molObj->atoms[i].x, molObj->atoms[i].y, molObj->atoms[i].z);
+        GLKMatrix4 modelMatrix = GLKMatrix4MakeTranslation(molObj->atoms[i].x, molObj->atoms[i].y, molObj->atoms[i].z);
         
-        u_int radH = [MolObject getAtomRadius:HYDROGEN];
-        float radScale = [MolObject getAtomRadius:molObj->atoms[i].type] / (float)radH;
+        //u_int radH = [MolObject getAtomRadius:HYDROGEN];
+        //float radScale = [MolObject getAtomRadius:molObj->atoms[i].type] / (float)radH;
         
-        modelViewMatrix = GLKMatrix4Scale(modelViewMatrix, radScale, radScale, radScale);
-        //modelViewMatrix = GLKMatrix4Rotate(modelViewMatrix, _rotation, 1.0f, 1.0f, 1.0f);
-        modelViewMatrix = GLKMatrix4Multiply(baseModelViewMatrix, modelViewMatrix);
+        GLKMatrix4 modelViewMatrix = GLKMatrix4Multiply(viewMatrix, modelMatrix);
         effect.transform.modelviewMatrix = modelViewMatrix;
         
         i++;
