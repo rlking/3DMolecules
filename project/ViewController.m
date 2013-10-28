@@ -10,7 +10,17 @@
 #import "WaveObject.h"
 #import "MolObject.h"
 
-@interface ViewController () {    
+const GLfloat axisLines[] = {
+    1.0f, 1.0f, 1.0f, // 1. point
+    5.0f, 5.0f, 5.0f  // 2. point 
+};
+
+@interface ViewController () {
+    float _rotation;
+    float _scale;
+    float _x;
+    float _y;
+    
     GLuint _vertexArray;
     GLuint _vertexBuffer;
     GLuint _normalBuffer;
@@ -22,6 +32,7 @@
 	
 	GLKVector3 _up;
 	GLKVector3 _right;
+    NSMutableArray *tableData;
 }
 
 @property (strong, nonatomic) NSMutableArray *effects;
@@ -52,8 +63,15 @@
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
+    NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:nil];
+    tableData = [NSMutableArray array];
+    for(NSString *path in resourcesList){
+        NSArray *splitPath = [path componentsSeparatedByString:@"/"];
+        [tableData addObject:[splitPath lastObject]];
+    }
+    
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"atp" ofType:@"mol"]];
+    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
     
     self.effects = [NSMutableArray array];
     
@@ -215,6 +233,40 @@ float _lastPy;
     for(GLKBaseEffect *effect in self.effects){
         [effect prepareToDraw];
         glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
+    }
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [tableData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
+    
+    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:nil];
+    molObj = [[MolObject alloc] initFromPath:[resourcesList objectAtIndex:indexPath.row]];
+    
+    [self.effects removeAllObjects];
+    for(u_int i=0; i < molObj->numAtoms; i++) {
+        GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+        effect.light0.enabled = GL_TRUE;
+        effect.light0.diffuseColor = [MolObject getColorForAtomType:molObj->atoms[i].type];
+        [self.effects addObject:effect];
     }
 }
 
