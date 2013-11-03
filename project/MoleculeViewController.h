@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
-@interface ViewController : GLKViewController <UITableViewDelegate, UITableViewDataSource>
-
+@interface MoleculeViewController : GLKViewController <UITableViewDelegate, UITableViewDataSource>
+{
+    UITextView *_textView;
+}
 @end

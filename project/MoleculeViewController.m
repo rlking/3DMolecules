@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Philipp König. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "MoleculeViewController.h"
 #import "WaveObject.h"
 #import "MolObject.h"
 
@@ -15,7 +15,7 @@ const GLfloat axisLines[] = {
     5.0f, 5.0f, 5.0f  // 2. point 
 };
 
-@interface ViewController () {
+@interface MoleculeViewController () {
     float _rotation;
     float _scale;
     float _x;
@@ -37,13 +37,14 @@ const GLfloat axisLines[] = {
 
 @property (strong, nonatomic) NSMutableArray *effects;
 @property (strong, nonatomic) EAGLContext *context;
+@property (nonatomic, retain) IBOutlet UITextView *textView;
 
 - (void)setupGL;
 - (void)tearDownGL;
 
 @end
 
-@implementation ViewController
+@implementation MoleculeViewController
 
 - (void)viewDidLoad
 {
@@ -69,6 +70,7 @@ const GLfloat axisLines[] = {
         NSArray *splitPath = [path componentsSeparatedByString:@"/"];
         [tableData addObject:[splitPath lastObject]];
     }
+    [_textView setText:@"bla"];
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
     molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
