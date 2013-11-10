@@ -31,7 +31,7 @@
 {
     [super viewDidLoad];
     
-    menuItems = [[NSArray alloc] initWithObjects:@"Molecules", nil];
+    menuItems = [[NSArray alloc] initWithObjects:@"Molecules", @"Amino Acids", nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
