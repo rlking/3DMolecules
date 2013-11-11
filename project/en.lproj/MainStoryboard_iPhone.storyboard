@@ -5,6 +5,71 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
+        <!--List Amino Acids Controller-->
+        <scene sceneID="HZM-T6-Fvu">
+            <objects>
+                <tableViewController storyboardIdentifier="ListAminoAcidsController" id="FaH-K3-iH2" customClass="ListAminoAcidsController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Isk-9B-Gye">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="Dg7-FM-Zju">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dg7-FM-Zju" id="vjv-m9-t9L">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="FaH-K3-iH2" id="wmf-uS-aGK"/>
+                            <outlet property="delegate" destination="FaH-K3-iH2" id="lnh-uu-50X"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yaN-Ke-bXp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="265" y="-513"/>
+        </scene>
+        <!--Amino Acid Controller-->
+        <scene sceneID="26a-RG-oaq">
+            <objects>
+                <viewController storyboardIdentifier="AminoAcidController" id="ydx-Pm-KCV" customClass="AminoAcidController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="GUF-Uq-SMD"/>
+                        <viewControllerLayoutGuide type="bottom" id="lcr-tX-zs4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="j2k-4L-QB0">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DUg-9h-xWq">
+                                <rect key="frame" x="139" y="148" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWf-S6-kUD">
+                                <rect key="frame" x="0.0" y="284" width="320" height="284"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="RzX-lP-259" kind="embed" id="1x0-tf-bP5"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="containerView" destination="TWf-S6-kUD" id="orT-fs-6mY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wWo-Ub-arb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="719" y="-262"/>
+        </scene>
         <!--Molecule View Controller-->
         <scene sceneID="5">
             <objects>
@@ -43,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="579" y="182"/>
+            <point key="canvasLocation" x="713" y="418"/>
         </scene>
         <!--Menu View Controller - 3D Molecules-->
         <scene sceneID="PfU-ko-UtZ">
@@ -111,6 +176,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cK9-HP-MXA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-226" y="182"/>
+        </scene>
+        <!--Molecule View Controller-->
+        <scene sceneID="Gcq-bM-avq">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Tb-8c-IwO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="RzX-lP-259" customClass="MoleculeViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1298" y="-83"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

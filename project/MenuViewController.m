@@ -121,8 +121,13 @@
     // Navigation logic may go here, for example:
     // Create the next view controller.
     
-    UIViewController *moleculeVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"MoleculeController"];
+    UIViewController *moleculeVC;
     
+    if(indexPath.row == 0) {
+        moleculeVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"MoleculeController"];
+    } else {
+        moleculeVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"ListAminoAcidsController"];
+    }
 
     // Pass the selected object to the new view controller.
     

@@ -51,7 +51,9 @@ const GLfloat axisLines[] = {
     [super viewDidLoad];
     
     self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
-
+    
+    self.effects = [NSMutableArray array];
+    
     if (!self.context) {
         NSLog(@"Failed to create ES context");
     }
@@ -73,9 +75,8 @@ const GLfloat axisLines[] = {
     [_textView setText:@"bla"];
     
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    molObj = [[MolObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
-    
-    self.effects = [NSMutableArray array];
+    [self loadMoleculeFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
+
     
     UIPinchGestureRecognizer *pinchRecognize = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPinchGesture:)];
     [self.view addGestureRecognizer:pinchRecognize];
@@ -157,13 +158,6 @@ float _lastPy;
 {
     [EAGLContext setCurrentContext:self.context];
     
-    for(u_int i=0; i < molObj->numAtoms; i++) {
-        GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
-        effect.light0.enabled = GL_TRUE;
-        effect.light0.diffuseColor = [MolObject getColorForAtomType:molObj->atoms[i].type];
-        [self.effects addObject:effect];
-    }
-    
     glEnable(GL_DEPTH_TEST);
     
     glGenVertexArraysOES(1, &_vertexArray);
@@ -239,6 +233,19 @@ float _lastPy;
 }
 
 
+-(void) loadMoleculeFromPath:(NSString *)path {
+    molObj = [[MolObject alloc] initFromPath:path];
+    
+    [self.effects removeAllObjects];
+    for(u_int i=0; i < molObj->numAtoms; i++) {
+        GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+        effect.light0.enabled = GL_TRUE;
+        effect.light0.diffuseColor = [MolObject getColorForAtomType:molObj->atoms[i].type];
+        [self.effects addObject:effect];
+    }
+}
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return [tableData count];
@@ -261,15 +268,7 @@ float _lastPy;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:nil];
-    molObj = [[MolObject alloc] initFromPath:[resourcesList objectAtIndex:indexPath.row]];
-    
-    [self.effects removeAllObjects];
-    for(u_int i=0; i < molObj->numAtoms; i++) {
-        GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
-        effect.light0.enabled = GL_TRUE;
-        effect.light0.diffuseColor = [MolObject getColorForAtomType:molObj->atoms[i].type];
-        [self.effects addObject:effect];
-    }
+    [self loadMoleculeFromPath:[resourcesList objectAtIndex:indexPath.row]];
 }
 
 @end

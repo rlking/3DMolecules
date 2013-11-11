@@ -12,5 +12,9 @@
 @interface MoleculeViewController : GLKViewController <UITableViewDelegate, UITableViewDataSource>
 {
     UITextView *_textView;
+    
 }
+
+-(void) loadMoleculeFromPath:(NSString *)path;
+
 @end
