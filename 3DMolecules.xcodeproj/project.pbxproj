@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800B0E1518773CF500ED971B /* AminoAcid.m in Sources */ = {isa = PBXBuildFile; fileRef = 800B0E1418773CF500ED971B /* AminoAcid.m */; };
 		801F3E8A181F0EC100BA3E33 /* co2.mol in Resources */ = {isa = PBXBuildFile; fileRef = 801F3E89181F0EC100BA3E33 /* co2.mol */; };
 		801F3E8E181F122C00BA3E33 /* acetic_acid.mol in Resources */ = {isa = PBXBuildFile; fileRef = 801F3E8B181F122C00BA3E33 /* acetic_acid.mol */; };
 		801F3E8F181F122C00BA3E33 /* propane.mol in Resources */ = {isa = PBXBuildFile; fileRef = 801F3E8C181F122C00BA3E33 /* propane.mol */; };
@@ -44,6 +45,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		800B0E1318773CF500ED971B /* AminoAcid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AminoAcid.h; sourceTree = "<group>"; };
+		800B0E1418773CF500ED971B /* AminoAcid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AminoAcid.m; sourceTree = "<group>"; };
 		801F3E89181F0EC100BA3E33 /* co2.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = co2.mol; sourceTree = "<group>"; };
 		801F3E8B181F122C00BA3E33 /* acetic_acid.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = acetic_acid.mol; sourceTree = "<group>"; };
 		801F3E8C181F122C00BA3E33 /* propane.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = propane.mol; sourceTree = "<group>"; };
@@ -106,6 +109,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		800B0E1218773CC700ED971B /* data */ = {
+			isa = PBXGroup;
+			children = (
+				808B61C017B99FA9009D4D90 /* MolObject.h */,
+				808B61C117B99FA9009D4D90 /* MolObject.m */,
+				808B61C717B99FA9009D4D90 /* WaveObject.h */,
+				808B61C817B99FA9009D4D90 /* WaveObject.m */,
+				800B0E1318773CF500ED971B /* AminoAcid.h */,
+				800B0E1418773CF500ED971B /* AminoAcid.m */,
+			);
+			name = data;
+			sourceTree = "<group>";
+		};
 		8028E14D17AD080D00EFBE74 = {
 			isa = PBXGroup;
 			children = (
@@ -149,8 +165,7 @@
 				80D534C61831695B00AB3003 /* ListAminoAcidsController.h */,
 				80D534C71831695B00AB3003 /* ListAminoAcidsController.m */,
 				808B61BF17B99FA9009D4D90 /* main.m */,
-				808B61C017B99FA9009D4D90 /* MolObject.h */,
-				808B61C117B99FA9009D4D90 /* MolObject.m */,
+				800B0E1218773CC700ED971B /* data */,
 				808B61C517B99FA9009D4D90 /* MoleculeViewController.h */,
 				808B61C617B99FA9009D4D90 /* MoleculeViewController.m */,
 				80D534C31830387D00AB3003 /* AminoAcidController.h */,
@@ -158,8 +173,6 @@
 				80E7BBD01826C9AB00638C71 /* MenuViewController.h */,
 				80E7BBD11826C9AB00638C71 /* MenuViewController.m */,
 				80E7BBD21826C9AB00638C71 /* MenuViewController.xib */,
-				808B61C717B99FA9009D4D90 /* WaveObject.h */,
-				808B61C817B99FA9009D4D90 /* WaveObject.m */,
 			);
 			path = project;
 			sourceTree = "<group>";
@@ -286,6 +299,7 @@
 				80D534C81831695B00AB3003 /* ListAminoAcidsController.m in Sources */,
 				808B61D517B99FA9009D4D90 /* MoleculeViewController.m in Sources */,
 				808B61D617B99FA9009D4D90 /* WaveObject.m in Sources */,
+				800B0E1518773CF500ED971B /* AminoAcid.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

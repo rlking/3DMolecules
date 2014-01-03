@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#include "AminoAcid.h"
 
 @interface AminoAcidController : UIViewController
 
--(void) loadMoleculeFromPath:(NSString *)path;
+-(void) loadMoleculeFromAminoAcid:(AminoAcid *)path;
 
 @end

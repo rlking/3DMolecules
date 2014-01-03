@@ -8,6 +8,7 @@
 
 #import "ListAminoAcidsController.h"
 #import "AminoAcidController.h"
+#import "AminoAcid.h"
 
 @interface ListAminoAcidsController ()
 
@@ -39,11 +40,16 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     
-    NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:@"amino_acids"];
+//    NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:@"amino_acids"];
+//    menuItems = [NSMutableArray array];
+//    for(NSString *path in resourcesList){
+//        NSArray *splitPath = [path componentsSeparatedByString:@"/"];
+//        [menuItems addObject:[splitPath lastObject]];
+//    }
+    
     menuItems = [NSMutableArray array];
-    for(NSString *path in resourcesList){
-        NSArray *splitPath = [path componentsSeparatedByString:@"/"];
-        [menuItems addObject:[splitPath lastObject]];
+    for(AminoAcid *acid in [AminoAcid getAminoAcids]) {
+        [menuItems addObject:acid.name];
     }
 }
 
@@ -90,8 +96,7 @@
     AminoAcidController *acidVC;
     acidVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AminoAcidController"];
     
-    NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:@"amino_acids"];
-    [acidVC loadMoleculeFromPath:[resourcesList objectAtIndex:indexPath.row]];
+    [acidVC loadMoleculeFromAminoAcid:[[AminoAcid getAminoAcids] objectAtIndex:indexPath.row]];
     // Pass the selected object to the new view controller.
     
     // Push the view controller.

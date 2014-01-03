@@ -8,16 +8,19 @@
 
 #import "AminoAcidController.h"
 #import "MoleculeViewController.h"
+#import "AminoAcid.h"
 
 @interface AminoAcidController ()
 @property (strong, nonatomic) MoleculeViewController *childViewController;
-@property (strong, nonatomic) NSString *molPath;
+@property (strong, nonatomic) AminoAcid *aminoAcid;
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @end
 
 @implementation AminoAcidController
 @synthesize  childViewController;
-@synthesize molPath;
+@synthesize aminoAcid;
+@synthesize label;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,7 +37,8 @@
 	// Do any additional setup after loading the view.
     
     
-    [childViewController loadMoleculeFromPath:molPath];
+    [childViewController loadMoleculeFromPath:aminoAcid.molPath];
+    [label setText:aminoAcid.name];
 }
 
 - (void)didReceiveMemoryWarning
@@ -44,8 +48,8 @@
 }
 
 
--(void) loadMoleculeFromPath:(NSString *)path {
-    molPath = path;
+-(void) loadMoleculeFromAminoAcid:(AminoAcid *)acid {
+    aminoAcid = acid;
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
