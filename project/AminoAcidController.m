@@ -10,12 +10,14 @@
 #import "MoleculeViewController.h"
 
 @interface AminoAcidController ()
-@property (weak, nonatomic) IBOutlet UIView *containerView;
+@property (strong, nonatomic) MoleculeViewController *childViewController;
+@property (strong, nonatomic) NSString *molPath;
 
 @end
 
 @implementation AminoAcidController
-@synthesize  containerView;
+@synthesize  childViewController;
+@synthesize molPath;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -31,6 +33,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    
+    [childViewController loadMoleculeFromPath:molPath];
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,7 +45,17 @@
 
 
 -(void) loadMoleculeFromPath:(NSString *)path {
-    [(MoleculeViewController *)containerView loadMoleculeFromPath:path];
+    molPath = path;
 }
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString * segueName = segue.identifier;
+    if ([segueName isEqualToString: @"FooA"]) {
+        childViewController = (MoleculeViewController *) [segue destinationViewController];
+    }
+}
+
+
 
 @end

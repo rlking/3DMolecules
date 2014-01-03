@@ -88,12 +88,10 @@
     // Create the next view controller.
     
     AminoAcidController *acidVC;
-    
     acidVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AminoAcidController"];
     
     NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:@"amino_acids"];
     [acidVC loadMoleculeFromPath:[resourcesList objectAtIndex:indexPath.row]];
-    
     // Pass the selected object to the new view controller.
     
     // Push the view controller.
