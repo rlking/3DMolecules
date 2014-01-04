@@ -11,9 +11,10 @@
 @interface AminoAcid : NSObject {
 }
 
+@property (nonatomic) int dbID;
 @property (strong, nonatomic) NSString *name;
-@property (strong, nonatomic) NSString *molPath;
-@property (strong, nonatomic) NSString *imagePath;
+@property (strong, nonatomic) NSString *molData;
+@property (strong, nonatomic) NSData *imageData;
 
 + (NSArray *) getAminoAcids;
 

@@ -36,6 +36,13 @@
 		808B61ED17BA8FED009D4D90 /* sf6.mol in Resources */ = {isa = PBXBuildFile; fileRef = 808B61EC17BA8FED009D4D90 /* sf6.mol */; };
 		808B61EF17BA923D009D4D90 /* atp.mol in Resources */ = {isa = PBXBuildFile; fileRef = 808B61EE17BA923D009D4D90 /* atp.mol */; };
 		808B61F117BA94B2009D4D90 /* aspirin.mol in Resources */ = {isa = PBXBuildFile; fileRef = 808B61F017BA94B2009D4D90 /* aspirin.mol */; };
+		8098F3BC18779A5700741EC2 /* amino_acids.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 8098F3BB18779A5700741EC2 /* amino_acids.sqlite */; };
+		8098F3CE18779F9E00741EC2 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3C418779F9E00741EC2 /* FMDatabase.m */; };
+		8098F3CF18779F9E00741EC2 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3C618779F9E00741EC2 /* FMDatabaseAdditions.m */; };
+		8098F3D018779F9E00741EC2 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3C818779F9E00741EC2 /* FMDatabasePool.m */; };
+		8098F3D118779F9E00741EC2 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3CA18779F9E00741EC2 /* FMDatabaseQueue.m */; };
+		8098F3D318779F9E00741EC2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3CD18779F9E00741EC2 /* FMResultSet.m */; };
+		8098F3D51877A25000741EC2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8098F3D41877A25000741EC2 /* libsqlite3.dylib */; };
 		80D53499182FF59B00AB3003 /* lecithine.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80D53498182FF59B00AB3003 /* lecithine.mol */; };
 		80D534C51830387D00AB3003 /* AminoAcidController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D534C41830387D00AB3003 /* AminoAcidController.m */; };
 		80D534C81831695B00AB3003 /* ListAminoAcidsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D534C71831695B00AB3003 /* ListAminoAcidsController.m */; };
@@ -82,6 +89,18 @@
 		808B61EC17BA8FED009D4D90 /* sf6.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sf6.mol; sourceTree = "<group>"; };
 		808B61EE17BA923D009D4D90 /* atp.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = atp.mol; sourceTree = "<group>"; };
 		808B61F017BA94B2009D4D90 /* aspirin.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = aspirin.mol; sourceTree = "<group>"; };
+		8098F3BB18779A5700741EC2 /* amino_acids.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = amino_acids.sqlite; sourceTree = "<group>"; };
+		8098F3C318779F9E00741EC2 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		8098F3C418779F9E00741EC2 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		8098F3C518779F9E00741EC2 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		8098F3C618779F9E00741EC2 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		8098F3C718779F9E00741EC2 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		8098F3C818779F9E00741EC2 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		8098F3C918779F9E00741EC2 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		8098F3CA18779F9E00741EC2 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		8098F3CC18779F9E00741EC2 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		8098F3CD18779F9E00741EC2 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		8098F3D41877A25000741EC2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		80D53498182FF59B00AB3003 /* lecithine.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lecithine.mol; sourceTree = "<group>"; };
 		80D534C31830387D00AB3003 /* AminoAcidController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AminoAcidController.h; sourceTree = "<group>"; };
 		80D534C41830387D00AB3003 /* AminoAcidController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AminoAcidController.m; sourceTree = "<group>"; };
@@ -98,6 +117,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8098F3D51877A25000741EC2 /* libsqlite3.dylib in Frameworks */,
 				8028E15A17AD080D00EFBE74 /* UIKit.framework in Frameworks */,
 				8028E15C17AD080D00EFBE74 /* Foundation.framework in Frameworks */,
 				8028E15E17AD080D00EFBE74 /* CoreGraphics.framework in Frameworks */,
@@ -143,6 +163,7 @@
 		8028E15817AD080D00EFBE74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8098F3D41877A25000741EC2 /* libsqlite3.dylib */,
 				8028E15917AD080D00EFBE74 /* UIKit.framework */,
 				8028E15B17AD080D00EFBE74 /* Foundation.framework */,
 				8028E15D17AD080D00EFBE74 /* CoreGraphics.framework */,
@@ -155,6 +176,7 @@
 		808B61B117B99FA9009D4D90 /* project */ = {
 			isa = PBXGroup;
 			children = (
+				8098F3C218779F9E00741EC2 /* FMDB */,
 				808B61B217B99FA9009D4D90 /* 3DMolecules-Info.plist */,
 				808B61B317B99FA9009D4D90 /* 3DMolecules-Prefix.pch */,
 				808B61B417B99FA9009D4D90 /* AppDelegate.h */,
@@ -180,6 +202,7 @@
 		808B61D717B9A1A0009D4D90 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				8098F3BB18779A5700741EC2 /* amino_acids.sqlite */,
 				80D534C91831713900AB3003 /* amino_acids */,
 				80D53498182FF59B00AB3003 /* lecithine.mol */,
 				801F3E91181FA3F100BA3E33 /* nitric_acid.mol */,
@@ -207,6 +230,23 @@
 				808B61DB17B9A1A0009D4D90 /* Default@2x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		8098F3C218779F9E00741EC2 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				8098F3C318779F9E00741EC2 /* FMDatabase.h */,
+				8098F3C418779F9E00741EC2 /* FMDatabase.m */,
+				8098F3C518779F9E00741EC2 /* FMDatabaseAdditions.h */,
+				8098F3C618779F9E00741EC2 /* FMDatabaseAdditions.m */,
+				8098F3C718779F9E00741EC2 /* FMDatabasePool.h */,
+				8098F3C818779F9E00741EC2 /* FMDatabasePool.m */,
+				8098F3C918779F9E00741EC2 /* FMDatabaseQueue.h */,
+				8098F3CA18779F9E00741EC2 /* FMDatabaseQueue.m */,
+				8098F3CC18779F9E00741EC2 /* FMResultSet.h */,
+				8098F3CD18779F9E00741EC2 /* FMResultSet.m */,
+			);
+			path = FMDB;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				801F3E90181F122C00BA3E33 /* methane.mol in Resources */,
+				8098F3BC18779A5700741EC2 /* amino_acids.sqlite in Resources */,
 				801F3E92181FA3F100BA3E33 /* nitric_acid.mol in Resources */,
 				801F3E8A181F0EC100BA3E33 /* co2.mol in Resources */,
 				808B61CE17B99FA9009D4D90 /* InfoPlist.strings in Resources */,
@@ -292,11 +333,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				808B61CA17B99FA9009D4D90 /* AppDelegate.m in Sources */,
+				8098F3D018779F9E00741EC2 /* FMDatabasePool.m in Sources */,
 				80D534C51830387D00AB3003 /* AminoAcidController.m in Sources */,
 				808B61D117B99FA9009D4D90 /* main.m in Sources */,
+				8098F3D118779F9E00741EC2 /* FMDatabaseQueue.m in Sources */,
+				8098F3CE18779F9E00741EC2 /* FMDatabase.m in Sources */,
 				808B61D217B99FA9009D4D90 /* MolObject.m in Sources */,
 				80E7BBD31826C9AB00638C71 /* MenuViewController.m in Sources */,
+				8098F3D318779F9E00741EC2 /* FMResultSet.m in Sources */,
 				80D534C81831695B00AB3003 /* ListAminoAcidsController.m in Sources */,
+				8098F3CF18779F9E00741EC2 /* FMDatabaseAdditions.m in Sources */,
 				808B61D517B99FA9009D4D90 /* MoleculeViewController.m in Sources */,
 				808B61D617B99FA9009D4D90 /* WaveObject.m in Sources */,
 				800B0E1518773CF500ED971B /* AminoAcid.m in Sources */,
@@ -394,6 +440,7 @@
 		8028E18517AD080D00EFBE74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "project/3DMolecules-Prefix.pch";
 				INFOPLIST_FILE = "project/3DMolecules-Info.plist";
@@ -405,6 +452,7 @@
 		8028E18617AD080D00EFBE74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "project/3DMolecules-Prefix.pch";
 				INFOPLIST_FILE = "project/3DMolecules-Info.plist";

@@ -68,6 +68,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="image" destination="rbC-CT-dLY" id="DX3-Mv-W76"/>
                         <outlet property="label" destination="fjl-p4-fq1" id="IEI-Y2-M3F"/>
                     </connections>
                 </viewController>

@@ -14,6 +14,7 @@
 @property (strong, nonatomic) MoleculeViewController *childViewController;
 @property (strong, nonatomic) AminoAcid *aminoAcid;
 @property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UIImageView *image;
 
 @end
 
@@ -21,6 +22,7 @@
 @synthesize  childViewController;
 @synthesize aminoAcid;
 @synthesize label;
+@synthesize image;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,8 +39,9 @@
 	// Do any additional setup after loading the view.
     
     
-    [childViewController loadMoleculeFromPath:aminoAcid.molPath];
+    [childViewController loadMoleculeFromString:aminoAcid.molData];
     [label setText:aminoAcid.name];
+    [image setImage:[UIImage imageWithData:aminoAcid.imageData]];
 }
 
 - (void)didReceiveMemoryWarning

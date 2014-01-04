@@ -246,6 +246,18 @@ float _lastPy;
     }
 }
 
+-(void) loadMoleculeFromString:(NSString *)stringData {
+    molObj = [[MolObject alloc] initFromString:stringData];
+    
+    [self.effects removeAllObjects];
+    for(u_int i=0; i < molObj->numAtoms; i++) {
+        GLKBaseEffect *effect = [[GLKBaseEffect alloc] init];
+        effect.light0.enabled = GL_TRUE;
+        effect.light0.diffuseColor = [MolObject getColorForAtomType:molObj->atoms[i].type];
+        [self.effects addObject:effect];
+    }
+}
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

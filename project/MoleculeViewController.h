@@ -16,5 +16,7 @@
 }
 
 -(void) loadMoleculeFromPath:(NSString *)path;
+-(void) loadMoleculeFromString:(NSString *)stringData;
+
 
 @end

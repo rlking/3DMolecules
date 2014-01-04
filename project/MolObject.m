@@ -18,8 +18,8 @@
 -(id) initFromPath:(NSString *)path {
     if ( self = [super init] ) {
         self->_path = path;
-        
-        [self readData];
+        NSString *molObjRaw = [NSString stringWithContentsOfFile:self->_path encoding:NSUTF8StringEncoding error:nil];
+        [self readDataFromString:molObjRaw];
         
         return self;
     }else {
@@ -27,10 +27,21 @@
     }
 }
 
--(void) readData {
-    NSString *molObjRaw = [NSString stringWithContentsOfFile:self->_path encoding:NSUTF8StringEncoding error:nil];
+-(id) initFromString:(NSString *)stringData {
+    if ( self = [super init] ) {
+        
+        [self readDataFromString:stringData];
+        
+        return self;
+    }else {
+        return nil;
+    }
+}
+
+-(void) readDataFromString:(NSString *)stringData {
     
-    NSArray *lines = [molObjRaw componentsSeparatedByString:@"\n"];
+    //NSArray *lines = [stringData componentsSeparatedByString:@"\n"];
+    NSArray *lines = [stringData componentsSeparatedByCharactersInSet:[NSCharacterSet newlineCharacterSet]];
     
     // split 4. line of mol file which contains number of atoms and bonds
     NSArray *splitLine = [[lines[3] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];

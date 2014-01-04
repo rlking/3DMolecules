@@ -35,6 +35,7 @@ typedef struct {
 }
 
 -(id) initFromPath:(NSString *)path;
+-(id) initFromString:(NSString *)stringData;
 +(u_int) getAtomRadius:(enum AtomType)type;
 +(GLKVector4) getColorForAtomType:(enum AtomType)type;
 
