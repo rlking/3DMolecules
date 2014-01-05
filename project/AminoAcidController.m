@@ -38,9 +38,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    NSString *tmp = aminoAcid.name;
+    tmp = [tmp stringByAppendingString:@" "];
+    tmp = [tmp stringByAppendingString:aminoAcid.polarity];
     
     [childViewController loadMoleculeFromString:aminoAcid.molData];
-    [label setText:aminoAcid.name];
+    [label setText:tmp];
     [image setImage:[UIImage imageWithData:aminoAcid.imageData]];
 }
 

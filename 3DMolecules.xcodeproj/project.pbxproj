@@ -277,6 +277,11 @@
 			attributes = {
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Philipp König";
+				TargetAttributes = {
+					8028E15517AD080D00EFBE74 = {
+						DevelopmentTeam = A35MN7XB26;
+					};
+				};
 			};
 			buildConfigurationList = 8028E15117AD080D00EFBE74 /* Build configuration list for PBXProject "3DMolecules" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -445,6 +450,7 @@
 				GCC_PREFIX_HEADER = "project/3DMolecules-Prefix.pch";
 				INFOPLIST_FILE = "project/3DMolecules-Info.plist";
 				PRODUCT_NAME = 3DMolecules;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -457,6 +463,7 @@
 				GCC_PREFIX_HEADER = "project/3DMolecules-Prefix.pch";
 				INFOPLIST_FILE = "project/3DMolecules-Info.plist";
 				PRODUCT_NAME = 3DMolecules;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

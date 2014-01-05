@@ -47,10 +47,10 @@
 //        [menuItems addObject:[splitPath lastObject]];
 //    }
     
-    menuItems = [NSMutableArray array];
-    for(AminoAcid *acid in [AminoAcid getAminoAcids]) {
-        [menuItems addObject:acid.name];
-    }
+//    menuItems = [NSMutableArray array];
+//    for(AminoAcid *acid in [AminoAcid getAminoAcids]) {
+//        [menuItems addObject:acid.name];
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,15 +63,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
-    return 1;
+    return [[[AminoAcid getAminoAcids] allKeys] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
-    return menuItems.count;
+    return [[[AminoAcid getAminoAcids] valueForKey:[[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section]] count];
 }
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return [[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section];
+}
+
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+//    return [[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -83,7 +90,10 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
+    AminoAcid *acid = [[[AminoAcid getAminoAcids] valueForKey:[[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    
+    //cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
+    cell.textLabel.text = acid.name;
     return cell;
 }
 
@@ -96,7 +106,9 @@
     AminoAcidController *acidVC;
     acidVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AminoAcidController"];
     
-    [acidVC loadMoleculeFromAminoAcid:[[AminoAcid getAminoAcids] objectAtIndex:indexPath.row]];
+    AminoAcid *acid = [[[AminoAcid getAminoAcids] valueForKey:[[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    
+    [acidVC loadMoleculeFromAminoAcid:acid];
     // Pass the selected object to the new view controller.
     
     // Push the view controller.

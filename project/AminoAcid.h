@@ -15,7 +15,8 @@
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *molData;
 @property (strong, nonatomic) NSData *imageData;
+@property (strong, nonatomic) NSString *polarity;
 
-+ (NSArray *) getAminoAcids;
++ (NSDictionary *) getAminoAcids;
 
 @end
