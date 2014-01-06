@@ -32,12 +32,10 @@ const GLfloat axisLines[] = {
 	
 	GLKVector3 _up;
 	GLKVector3 _right;
-    NSMutableArray *tableData;
 }
 
 @property (strong, nonatomic) NSMutableArray *effects;
 @property (strong, nonatomic) EAGLContext *context;
-@property (nonatomic, retain) IBOutlet UITextView *textView;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -66,14 +64,6 @@ const GLfloat axisLines[] = {
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
-    NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:nil];
-    tableData = [NSMutableArray array];
-    for(NSString *path in resourcesList){
-        NSArray *splitPath = [path componentsSeparatedByString:@"/"];
-        [tableData addObject:[splitPath lastObject]];
-    }
-    [_textView setText:@"bla"];
-    
     sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
     [self loadMoleculeFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
 
@@ -83,7 +73,6 @@ const GLfloat axisLines[] = {
     UIPanGestureRecognizer *panRecognize = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPanGesture:)];
     panRecognize.maximumNumberOfTouches = 1;
     [self.view addGestureRecognizer:panRecognize];
-
     
     [self setupGL];
 }
@@ -256,32 +245,6 @@ float _lastPy;
         effect.light0.diffuseColor = [MolObject getColorForAtomType:molObj->atoms[i].type];
         [self.effects addObject:effect];
     }
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [tableData count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
-    return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSArray *resourcesList = [[NSBundle mainBundle] pathsForResourcesOfType:@".mol" inDirectory:nil];
-    [self loadMoleculeFromPath:[resourcesList objectAtIndex:indexPath.row]];
 }
 
 @end

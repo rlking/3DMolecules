@@ -43,6 +43,7 @@
 		8098F3D118779F9E00741EC2 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3CA18779F9E00741EC2 /* FMDatabaseQueue.m */; };
 		8098F3D318779F9E00741EC2 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3CD18779F9E00741EC2 /* FMResultSet.m */; };
 		8098F3D51877A25000741EC2 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8098F3D41877A25000741EC2 /* libsqlite3.dylib */; };
+		8098F3D81879B7D700741EC2 /* SearchMoleculeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8098F3D71879B7D700741EC2 /* SearchMoleculeViewController.m */; };
 		80D53499182FF59B00AB3003 /* lecithine.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80D53498182FF59B00AB3003 /* lecithine.mol */; };
 		80D534C51830387D00AB3003 /* AminoAcidController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D534C41830387D00AB3003 /* AminoAcidController.m */; };
 		80D534C81831695B00AB3003 /* ListAminoAcidsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80D534C71831695B00AB3003 /* ListAminoAcidsController.m */; };
@@ -101,6 +102,8 @@
 		8098F3CC18779F9E00741EC2 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		8098F3CD18779F9E00741EC2 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		8098F3D41877A25000741EC2 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		8098F3D61879B7D700741EC2 /* SearchMoleculeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMoleculeViewController.h; sourceTree = "<group>"; };
+		8098F3D71879B7D700741EC2 /* SearchMoleculeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMoleculeViewController.m; sourceTree = "<group>"; };
 		80D53498182FF59B00AB3003 /* lecithine.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = lecithine.mol; sourceTree = "<group>"; };
 		80D534C31830387D00AB3003 /* AminoAcidController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AminoAcidController.h; sourceTree = "<group>"; };
 		80D534C41830387D00AB3003 /* AminoAcidController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AminoAcidController.m; sourceTree = "<group>"; };
@@ -184,6 +187,8 @@
 				808B61B917B99FA9009D4D90 /* InfoPlist.strings */,
 				808B61BB17B99FA9009D4D90 /* MainStoryboard_iPad.storyboard */,
 				808B61BD17B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard */,
+				8098F3D61879B7D700741EC2 /* SearchMoleculeViewController.h */,
+				8098F3D71879B7D700741EC2 /* SearchMoleculeViewController.m */,
 				80D534C61831695B00AB3003 /* ListAminoAcidsController.h */,
 				80D534C71831695B00AB3003 /* ListAminoAcidsController.m */,
 				808B61BF17B99FA9009D4D90 /* main.m */,
@@ -339,6 +344,7 @@
 			files = (
 				808B61CA17B99FA9009D4D90 /* AppDelegate.m in Sources */,
 				8098F3D018779F9E00741EC2 /* FMDatabasePool.m in Sources */,
+				8098F3D81879B7D700741EC2 /* SearchMoleculeViewController.m in Sources */,
 				80D534C51830387D00AB3003 /* AminoAcidController.m in Sources */,
 				808B61D117B99FA9009D4D90 /* main.m in Sources */,
 				8098F3D118779F9E00741EC2 /* FMDatabaseQueue.m in Sources */,

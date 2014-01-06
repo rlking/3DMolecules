@@ -124,7 +124,7 @@
     UIViewController *moleculeVC;
     
     if(indexPath.row == 0) {
-        moleculeVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"MoleculeController"];
+        moleculeVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"SearchMoleculeController"];
     } else {
         moleculeVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"ListAminoAcidsController"];
     }

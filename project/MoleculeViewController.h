@@ -9,11 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 
-@interface MoleculeViewController : GLKViewController <UITableViewDelegate, UITableViewDataSource>
-{
-    UITextView *_textView;
-    
-}
+@interface MoleculeViewController : GLKViewController
 
 -(void) loadMoleculeFromPath:(NSString *)path;
 -(void) loadMoleculeFromString:(NSString *)stringData;
