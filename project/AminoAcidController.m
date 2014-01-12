@@ -13,7 +13,8 @@
 @interface AminoAcidController ()
 @property (strong, nonatomic) MoleculeViewController *childViewController;
 @property (strong, nonatomic) AminoAcid *aminoAcid;
-@property (weak, nonatomic) IBOutlet UILabel *label;
+@property (weak, nonatomic) IBOutlet UILabel *labelName;
+@property (weak, nonatomic) IBOutlet UILabel *labelPolarity;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 
 @end
@@ -21,7 +22,8 @@
 @implementation AminoAcidController
 @synthesize  childViewController;
 @synthesize aminoAcid;
-@synthesize label;
+@synthesize labelName;
+@synthesize labelPolarity;
 @synthesize image;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -38,12 +40,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    NSString *tmp = aminoAcid.name;
-    tmp = [tmp stringByAppendingString:@" "];
-    tmp = [tmp stringByAppendingString:aminoAcid.polarity];
-    
     [childViewController loadMoleculeFromString:aminoAcid.molData];
-    [label setText:tmp];
+    [labelName setText:aminoAcid.name];
+    [labelPolarity setText:aminoAcid.polarity];
     [image setImage:[UIImage imageWithData:aminoAcid.imageData]];
 }
 
