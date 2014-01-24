@@ -51,6 +51,9 @@
 		80D534CA1831713900AB3003 /* amino_acids in Resources */ = {isa = PBXBuildFile; fileRef = 80D534C91831713900AB3003 /* amino_acids */; };
 		80E7BBD31826C9AB00638C71 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80E7BBD11826C9AB00638C71 /* MenuViewController.m */; };
 		80E7BBD41826C9AB00638C71 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80E7BBD21826C9AB00638C71 /* MenuViewController.xib */; };
+		80F4623A189186BD00DBE565 /* methylphenidat.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80F46239189186BD00DBE565 /* methylphenidat.mol */; };
+		80F4623C1891889600DBE565 /* alprazolam.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80F4623B1891889600DBE565 /* alprazolam.mol */; };
+		80F4623E1891896000DBE565 /* phenylacetylcarbinol.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80F4623D1891896000DBE565 /* phenylacetylcarbinol.mol */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -115,6 +118,9 @@
 		80E7BBD01826C9AB00638C71 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
 		80E7BBD11826C9AB00638C71 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
 		80E7BBD21826C9AB00638C71 /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		80F46239189186BD00DBE565 /* methylphenidat.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = methylphenidat.mol; sourceTree = "<group>"; };
+		80F4623B1891889600DBE565 /* alprazolam.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alprazolam.mol; sourceTree = "<group>"; };
+		80F4623D1891896000DBE565 /* phenylacetylcarbinol.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phenylacetylcarbinol.mol; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,9 @@
 		808B61D717B9A1A0009D4D90 /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				80F4623D1891896000DBE565 /* phenylacetylcarbinol.mol */,
+				80F4623B1891889600DBE565 /* alprazolam.mol */,
+				80F46239189186BD00DBE565 /* methylphenidat.mol */,
 				8098F3BB18779A5700741EC2 /* amino_acids.sqlite */,
 				80D534C91831713900AB3003 /* amino_acids */,
 				80D53498182FF59B00AB3003 /* lecithine.mol */,
@@ -313,8 +322,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80F4623A189186BD00DBE565 /* methylphenidat.mol in Resources */,
 				801F3E90181F122C00BA3E33 /* methane.mol in Resources */,
 				8098F3BC18779A5700741EC2 /* amino_acids.sqlite in Resources */,
+				80F4623C1891889600DBE565 /* alprazolam.mol in Resources */,
 				801F3E92181FA3F100BA3E33 /* nitric_acid.mol in Resources */,
 				801F3E8A181F0EC100BA3E33 /* co2.mol in Resources */,
 				808B61CE17B99FA9009D4D90 /* InfoPlist.strings in Resources */,
@@ -325,6 +336,7 @@
 				80D534CA1831713900AB3003 /* amino_acids in Resources */,
 				8098F3FD187B1F9600741EC2 /* Icons.xcassets in Resources */,
 				801F3E8F181F122C00BA3E33 /* propane.mol in Resources */,
+				80F4623E1891896000DBE565 /* phenylacetylcarbinol.mol in Resources */,
 				808B61E417B9A1A0009D4D90 /* Default.png in Resources */,
 				808B61E517B9A1A0009D4D90 /* Default@2x.png in Resources */,
 				808B61E617B9A1A0009D4D90 /* meth.mol in Resources */,

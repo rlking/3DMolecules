@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchMoleculeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface SearchMoleculeViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
+
+
 
 @end

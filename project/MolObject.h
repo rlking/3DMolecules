@@ -17,6 +17,7 @@ enum AtomType {
     PHOSPHORUS,
     SULFUR,
     FLUOR,
+    CHLORINE,
     UNKNOWN
 };
 

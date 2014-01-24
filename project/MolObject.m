@@ -87,6 +87,8 @@
         return SULFUR;
     } else if([type isEqualToString:@"F"]) {
         return FLUOR;
+    } else if([type isEqualToString:@"Cl"]) {
+        return CHLORINE;
     }
     
     return UNKNOWN;
@@ -115,6 +117,9 @@
             break;
         case FLUOR:
             return GLKVector4Make(0.0f, 1.0f, 0.0f, 1.0f);
+            break;
+        case CHLORINE:
+            return GLKVector4Make(0.3f, 0.8f, 0.0f, 1.0f);
             break;
         case UNKNOWN:
         default:
@@ -145,6 +150,9 @@
             break;
         case FLUOR:
             return 150;
+            break;
+        case CHLORINE:
+            return 180;
             break;
         case UNKNOWN:
         default:
