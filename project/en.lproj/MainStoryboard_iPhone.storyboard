@@ -38,14 +38,14 @@
             <objects>
                 <viewController storyboardIdentifier="AminoAcidController" id="ydx-Pm-KCV" customClass="AminoAcidController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="GUF-Uq-SMD"/>
-                        <viewControllerLayoutGuide type="bottom" id="lcr-tX-zs4"/>
+                        <viewControllerLayoutGuide type="top" id="D0p-dx-EqK"/>
+                        <viewControllerLayoutGuide type="bottom" id="RAX-0B-hcN"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="j2k-4L-QB0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWf-S6-kUD">
+                            <containerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TWf-S6-kUD">
                                 <rect key="frame" x="0.0" y="284" width="320" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -86,6 +86,10 @@
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="TWf-S6-kUD" firstAttribute="top" secondItem="j2k-4L-QB0" secondAttribute="top" constant="284" id="Neq-4C-i9c"/>
+                            <constraint firstAttribute="bottom" secondItem="TWf-S6-kUD" secondAttribute="bottom" id="Y5u-hh-UAz"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="image" destination="rbC-CT-dLY" id="DX3-Mv-W76"/>
@@ -102,22 +106,22 @@
             <objects>
                 <viewController storyboardIdentifier="SearchMoleculeController" id="2" customClass="SearchMoleculeViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="PJI-AB-wg4"/>
-                        <viewControllerLayoutGuide type="bottom" id="plJ-GZ-5ik"/>
+                        <viewControllerLayoutGuide type="top" id="CTK-Re-ByE"/>
+                        <viewControllerLayoutGuide type="bottom" id="dVT-sP-Lnt"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9kg-kC-j0J">
-                                <rect key="frame" x="0.0" y="218" width="320" height="350"/>
+                            <containerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9kg-kC-j0J">
+                                <rect key="frame" x="0.0" y="158" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="ADt-69-8tM" kind="embed" identifier="FooB" id="qt3-L7-FfH"/>
                                 </connections>
                             </containerView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RoR-7m-n2M">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RoR-7m-n2M">
                                 <rect key="frame" x="20" y="78" width="234" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -128,6 +132,11 @@
                             </textField>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9kg-kC-j0J" secondAttribute="bottom" id="9tM-P8-e85"/>
+                            <constraint firstItem="9kg-kC-j0J" firstAttribute="top" secondItem="3" secondAttribute="top" constant="158" id="A02-YK-UgW"/>
+                            <constraint firstItem="9kg-kC-j0J" firstAttribute="top" secondItem="RoR-7m-n2M" secondAttribute="bottom" constant="50" id="vek-Dg-nIS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9Do-Wa-xrC"/>
                     <connections>
