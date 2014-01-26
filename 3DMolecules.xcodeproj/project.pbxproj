@@ -20,7 +20,6 @@
 		8028E16217AD080D00EFBE74 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028E16117AD080D00EFBE74 /* OpenGLES.framework */; };
 		808B61CA17B99FA9009D4D90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 808B61B517B99FA9009D4D90 /* AppDelegate.m */; };
 		808B61CE17B99FA9009D4D90 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 808B61B917B99FA9009D4D90 /* InfoPlist.strings */; };
-		808B61CF17B99FA9009D4D90 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808B61BB17B99FA9009D4D90 /* MainStoryboard_iPad.storyboard */; };
 		808B61D017B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808B61BD17B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard */; };
 		808B61D117B99FA9009D4D90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 808B61BF17B99FA9009D4D90 /* main.m */; };
 		808B61D217B99FA9009D4D90 /* MolObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 808B61C117B99FA9009D4D90 /* MolObject.m */; };
@@ -73,7 +72,6 @@
 		808B61B417B99FA9009D4D90 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		808B61B517B99FA9009D4D90 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		808B61BA17B99FA9009D4D90 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		808B61BC17B99FA9009D4D90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		808B61BE17B99FA9009D4D90 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		808B61BF17B99FA9009D4D90 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		808B61C017B99FA9009D4D90 /* MolObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MolObject.h; sourceTree = "<group>"; };
@@ -190,7 +188,6 @@
 				808B61B417B99FA9009D4D90 /* AppDelegate.h */,
 				808B61B517B99FA9009D4D90 /* AppDelegate.m */,
 				808B61B917B99FA9009D4D90 /* InfoPlist.strings */,
-				808B61BB17B99FA9009D4D90 /* MainStoryboard_iPad.storyboard */,
 				808B61BD17B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard */,
 				8098F3D61879B7D700741EC2 /* SearchMoleculeViewController.h */,
 				8098F3D71879B7D700741EC2 /* SearchMoleculeViewController.m */,
@@ -325,7 +322,6 @@
 				801F3E8A181F0EC100BA3E33 /* co2.mol in Resources */,
 				80F4629218948D7500DBE565 /* Default@2x.png in Resources */,
 				808B61CE17B99FA9009D4D90 /* InfoPlist.strings in Resources */,
-				808B61CF17B99FA9009D4D90 /* MainStoryboard_iPad.storyboard in Resources */,
 				808B61D017B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard in Resources */,
 				80E7BBD41826C9AB00638C71 /* MenuViewController.xib in Resources */,
 				80D534CA1831713900AB3003 /* amino_acids in Resources */,
@@ -377,14 +373,6 @@
 				808B61BA17B99FA9009D4D90 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		808B61BB17B99FA9009D4D90 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				808B61BC17B99FA9009D4D90 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		808B61BD17B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard */ = {
