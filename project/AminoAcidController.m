@@ -15,6 +15,8 @@
 @property (strong, nonatomic) AminoAcid *aminoAcid;
 @property (weak, nonatomic) IBOutlet UILabel *labelName;
 @property (weak, nonatomic) IBOutlet UILabel *labelPolarity;
+@property (weak, nonatomic) IBOutlet UILabel *labelLetter1;
+@property (weak, nonatomic) IBOutlet UILabel *labelLetter3;
 @property (weak, nonatomic) IBOutlet UIImageView *image;
 
 @end
@@ -25,6 +27,8 @@
 @synthesize labelName;
 @synthesize labelPolarity;
 @synthesize image;
+@synthesize labelLetter1;
+@synthesize labelLetter3;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -43,6 +47,8 @@
     [childViewController loadMoleculeFromString:aminoAcid.molData];
     [labelName setText:aminoAcid.name];
     [labelPolarity setText:aminoAcid.polarity];
+    [labelLetter1 setText:aminoAcid.letter1];
+    [labelLetter3 setText:aminoAcid.letter3];
     [image setImage:[UIImage imageWithData:aminoAcid.imageData]];
 }
 

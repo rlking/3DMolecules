@@ -19,6 +19,8 @@ static NSDictionary *aminoAcids;
 @synthesize molData;
 @synthesize imageData;
 @synthesize polarity;
+@synthesize letter1;
+@synthesize letter3;
 
 
 -(id) init {
@@ -58,6 +60,8 @@ static NSDictionary *aminoAcids;
                 acid.molData = [results stringForColumn:@"mol_data"];
                 acid.imageData = [results dataForColumn:@"image_data"];
                 acid.polarity = [results stringForColumn:@"polar"];
+                acid.letter1 = [results stringForColumn:@"1-letter"];
+                acid.letter3 = [results stringForColumn:@"3-letter"];
                 
                 if([acid.polarity isEqualToString:@"polar"]) {
                     [polar addObject:acid];
