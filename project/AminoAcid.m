@@ -40,8 +40,8 @@ static NSDictionary *aminoAcids;
         
         [acids setObject:polar forKey:@"polar"];
         [acids setObject:nonpolar forKey:@"nonpolar"];
-        [acids setObject:acidpolar forKey:@"acidpolar"];
-        [acids setObject:basicpolar forKey:@"basicpolar"];
+        [acids setObject:acidpolar forKey:@"acidic polar"];
+        [acids setObject:basicpolar forKey:@"basic polar"];
         
         FMDatabase *database = [self openDatabase];
         [database open];
