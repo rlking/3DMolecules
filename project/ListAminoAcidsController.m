@@ -13,12 +13,16 @@
 @interface ListAminoAcidsController ()
 
 @property (strong, nonatomic) NSMutableArray *menuItems;
+@property (strong, atomic) NSThread *thread;
+@property (strong, atomic) NSDictionary *aminoAcids;
 
 @end
 
 @implementation ListAminoAcidsController
 
 @synthesize menuItems;
+@synthesize thread;
+@synthesize aminoAcids;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -51,6 +55,16 @@
 //    for(AminoAcid *acid in [AminoAcid getAminoAcids]) {
 //        [menuItems addObject:acid.name];
 //    }
+    
+    //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
+    
+    thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadAcids) object:nil];
+    [thread start];
+}
+
+- (void)loadAcids {
+    aminoAcids = [AminoAcid getAminoAcids];
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -63,17 +77,17 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[[AminoAcid getAminoAcids] allKeys] count];
+    return [[aminoAcids allKeys] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[[AminoAcid getAminoAcids] valueForKey:[[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section]] count];
+    return [[aminoAcids valueForKey:[[[aminoAcids allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section]] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section];
+    return [[[aminoAcids allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:section];
 }
 
 //- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
@@ -90,7 +104,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     
-    AminoAcid *acid = [[[AminoAcid getAminoAcids] valueForKey:[[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    AminoAcid *acid = [[aminoAcids valueForKey:[[[aminoAcids allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     
     //cell.textLabel.text = [menuItems objectAtIndex:indexPath.row];
     cell.textLabel.text = acid.name;
@@ -106,7 +120,7 @@
     AminoAcidController *acidVC;
     acidVC = [[UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil] instantiateViewControllerWithIdentifier:@"AminoAcidController"];
     
-    AminoAcid *acid = [[[AminoAcid getAminoAcids] valueForKey:[[[[AminoAcid getAminoAcids] allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    AminoAcid *acid = [[aminoAcids valueForKey:[[[aminoAcids allKeys] sortedArrayUsingSelector:@selector(localizedCaseInsensitiveCompare:)] objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     
     [acidVC loadMoleculeFromAminoAcid:acid];
     // Pass the selected object to the new view controller.

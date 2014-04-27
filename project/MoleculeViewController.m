@@ -1,6 +1,6 @@
 //
 //  ViewController.m
-//  testrenderer
+//  renderes mol files
 //
 //  Created by Philipp König on 03.08.13.
 //  Copyright (c) 2013 Philipp König. All rights reserved.
@@ -15,8 +15,9 @@ const GLfloat axisLines[] = {
     5.0f, 5.0f, 5.0f  // 2. point 
 };
 
+static WaveObject *sphere;
+
 @interface MoleculeViewController () {
-    float _rotation;
     float _scale;
     float _x;
     float _y;
@@ -24,8 +25,7 @@ const GLfloat axisLines[] = {
     GLuint _vertexArray;
     GLuint _vertexBuffer;
     GLuint _normalBuffer;
-    
-    WaveObject *sphere;
+
     MolObject *molObj;
 
 	GLKVector3 _position;
@@ -36,6 +36,7 @@ const GLfloat axisLines[] = {
 
 @property (strong, nonatomic) NSMutableArray *effects;
 @property (strong, nonatomic) EAGLContext *context;
+@property (strong, atomic) NSThread *thread;
 
 - (void)setupGL;
 - (void)tearDownGL;
@@ -43,6 +44,8 @@ const GLfloat axisLines[] = {
 @end
 
 @implementation MoleculeViewController
+
+@synthesize thread;
 
 - (void)viewDidLoad
 {
@@ -64,9 +67,12 @@ const GLfloat axisLines[] = {
     view.context = self.context;
     view.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     
-    sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
-    [self loadMoleculeFromPath:[[NSBundle mainBundle] pathForResource:@"meth" ofType:@"mol"]];
-
+    if(!sphere) {
+        thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadSphere) object:nil];
+        [thread start];
+    } else {
+        [self setupGL];
+    }
     
     UIPinchGestureRecognizer *pinchRecognize = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(respondToPinchGesture:)];
     [self.view addGestureRecognizer:pinchRecognize];
@@ -74,6 +80,11 @@ const GLfloat axisLines[] = {
     panRecognize.maximumNumberOfTouches = 1;
     [self.view addGestureRecognizer:panRecognize];
     
+    //[self setupGL];
+}
+
+- (void)loadSphere {
+    sphere = [[WaveObject alloc] initFromPath:[[NSBundle mainBundle] pathForResource:@"sphere_smooth" ofType:@"obj"]];
     [self setupGL];
 }
 
@@ -204,7 +215,13 @@ float _lastPy;
         i++;
     }
     
-    //_rotation += self.timeSinceLastUpdate * 0.5f;
+    // rotate molecule
+    {
+		GLKMatrix4 rotation_x = GLKMatrix4MakeRotation(-(self.timeSinceLastUpdate * 80.0f) / 100.0f, _up.x, _up.y, _up.z);
+		
+		_right = GLKMatrix4MultiplyVector3(rotation_x, _right);
+		_position = GLKMatrix4MultiplyVector3(rotation_x, _position);
+	}
 }
 
 - (void)glkView:(GLKView *)view drawInRect:(CGRect)rect
@@ -216,9 +233,11 @@ float _lastPy;
     
     glBindVertexArrayOES(_vertexArray);
     
+    if(sphere) {
     for(GLKBaseEffect *effect in self.effects){
         [effect prepareToDraw];
         glDrawArrays(GL_TRIANGLES, 0, sphere->numIndices * 3);
+    }
     }
 }
 
