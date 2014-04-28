@@ -58,6 +58,8 @@
     
     //[[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
     
+    self.title = @"3D Molecules";
+    
     thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadAcids) object:nil];
     [thread start];
 }
