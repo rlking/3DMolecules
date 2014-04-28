@@ -18,6 +18,22 @@
 		8028E15E17AD080D00EFBE74 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028E15D17AD080D00EFBE74 /* CoreGraphics.framework */; };
 		8028E16017AD080D00EFBE74 /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028E15F17AD080D00EFBE74 /* GLKit.framework */; };
 		8028E16217AD080D00EFBE74 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8028E16117AD080D00EFBE74 /* OpenGLES.framework */; };
+		802FA03B190EA1C600127976 /* Icon-40.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA02B190EA1C600127976 /* Icon-40.png */; };
+		802FA03C190EA1C600127976 /* Icon-40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA02C190EA1C600127976 /* Icon-40@2x.png */; };
+		802FA03D190EA1C600127976 /* Icon-60.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA02D190EA1C600127976 /* Icon-60.png */; };
+		802FA03E190EA1C600127976 /* Icon-60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA02E190EA1C600127976 /* Icon-60@2x.png */; };
+		802FA03F190EA1C600127976 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA02F190EA1C600127976 /* Icon-72.png */; };
+		802FA040190EA1C600127976 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA030190EA1C600127976 /* Icon-72@2x.png */; };
+		802FA041190EA1C600127976 /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA031190EA1C600127976 /* Icon-76.png */; };
+		802FA042190EA1C600127976 /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA032190EA1C600127976 /* Icon-76@2x.png */; };
+		802FA043190EA1C600127976 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA033190EA1C600127976 /* Icon-Small-50.png */; };
+		802FA044190EA1C600127976 /* Icon-Small-50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA034190EA1C600127976 /* Icon-Small-50@2x.png */; };
+		802FA045190EA1C600127976 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA035190EA1C600127976 /* Icon-Small.png */; };
+		802FA046190EA1C600127976 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA036190EA1C600127976 /* Icon-Small@2x.png */; };
+		802FA047190EA1C600127976 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA037190EA1C600127976 /* Icon.png */; };
+		802FA048190EA1C600127976 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA038190EA1C600127976 /* Icon@2x.png */; };
+		802FA049190EA1C600127976 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA039190EA1C600127976 /* iTunesArtwork.png */; };
+		802FA04A190EA1C600127976 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 802FA03A190EA1C600127976 /* iTunesArtwork@2x.png */; };
 		808B61CA17B99FA9009D4D90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 808B61B517B99FA9009D4D90 /* AppDelegate.m */; };
 		808B61CE17B99FA9009D4D90 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 808B61B917B99FA9009D4D90 /* InfoPlist.strings */; };
 		808B61D017B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 808B61BD17B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard */; };
@@ -48,7 +64,6 @@
 		80F4623A189186BD00DBE565 /* methylphenidat.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80F46239189186BD00DBE565 /* methylphenidat.mol */; };
 		80F4623C1891889600DBE565 /* alprazolam.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80F4623B1891889600DBE565 /* alprazolam.mol */; };
 		80F4623E1891896000DBE565 /* phenylacetylcarbinol.mol in Resources */ = {isa = PBXBuildFile; fileRef = 80F4623D1891896000DBE565 /* phenylacetylcarbinol.mol */; };
-		80F4626518948BC600DBE565 /* icons_and_launch.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80F4626418948BC600DBE565 /* icons_and_launch.xcassets */; };
 		80F4629218948D7500DBE565 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F4629018948D7500DBE565 /* Default@2x.png */; };
 		80F4629318948D7500DBE565 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 80F4629118948D7500DBE565 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
@@ -67,6 +82,22 @@
 		8028E15D17AD080D00EFBE74 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		8028E15F17AD080D00EFBE74 /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
 		8028E16117AD080D00EFBE74 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
+		802FA02B190EA1C600127976 /* Icon-40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40.png"; sourceTree = "<group>"; };
+		802FA02C190EA1C600127976 /* Icon-40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-40@2x.png"; sourceTree = "<group>"; };
+		802FA02D190EA1C600127976 /* Icon-60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60.png"; sourceTree = "<group>"; };
+		802FA02E190EA1C600127976 /* Icon-60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-60@2x.png"; sourceTree = "<group>"; };
+		802FA02F190EA1C600127976 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		802FA030190EA1C600127976 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
+		802FA031190EA1C600127976 /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		802FA032190EA1C600127976 /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		802FA033190EA1C600127976 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		802FA034190EA1C600127976 /* Icon-Small-50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50@2x.png"; sourceTree = "<group>"; };
+		802FA035190EA1C600127976 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		802FA036190EA1C600127976 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		802FA037190EA1C600127976 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		802FA038190EA1C600127976 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		802FA039190EA1C600127976 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		802FA03A190EA1C600127976 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		808B61B217B99FA9009D4D90 /* 3DMolecules-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "3DMolecules-Info.plist"; sourceTree = "<group>"; };
 		808B61B317B99FA9009D4D90 /* 3DMolecules-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "3DMolecules-Prefix.pch"; sourceTree = "<group>"; };
 		808B61B417B99FA9009D4D90 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -112,7 +143,6 @@
 		80F46239189186BD00DBE565 /* methylphenidat.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = methylphenidat.mol; sourceTree = "<group>"; };
 		80F4623B1891889600DBE565 /* alprazolam.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = alprazolam.mol; sourceTree = "<group>"; };
 		80F4623D1891896000DBE565 /* phenylacetylcarbinol.mol */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = phenylacetylcarbinol.mol; sourceTree = "<group>"; };
-		80F4626418948BC600DBE565 /* icons_and_launch.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icons_and_launch.xcassets; sourceTree = "<group>"; };
 		80F4629018948D7500DBE565 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "icons.xcassets/LaunchImage.imageset/Default@2x.png"; sourceTree = SOURCE_ROOT; };
 		80F4629118948D7500DBE565 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "icons.xcassets/LaunchImage.imageset/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -150,7 +180,6 @@
 		8028E14D17AD080D00EFBE74 = {
 			isa = PBXGroup;
 			children = (
-				80F4626418948BC600DBE565 /* icons_and_launch.xcassets */,
 				808B61D717B9A1A0009D4D90 /* resources */,
 				808B61B117B99FA9009D4D90 /* project */,
 				8028E15817AD080D00EFBE74 /* Frameworks */,
@@ -177,6 +206,29 @@
 				8028E16117AD080D00EFBE74 /* OpenGLES.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		802FA02A190EA1C600127976 /* icons_ios7 */ = {
+			isa = PBXGroup;
+			children = (
+				802FA02B190EA1C600127976 /* Icon-40.png */,
+				802FA02C190EA1C600127976 /* Icon-40@2x.png */,
+				802FA02D190EA1C600127976 /* Icon-60.png */,
+				802FA02E190EA1C600127976 /* Icon-60@2x.png */,
+				802FA02F190EA1C600127976 /* Icon-72.png */,
+				802FA030190EA1C600127976 /* Icon-72@2x.png */,
+				802FA031190EA1C600127976 /* Icon-76.png */,
+				802FA032190EA1C600127976 /* Icon-76@2x.png */,
+				802FA033190EA1C600127976 /* Icon-Small-50.png */,
+				802FA034190EA1C600127976 /* Icon-Small-50@2x.png */,
+				802FA035190EA1C600127976 /* Icon-Small.png */,
+				802FA036190EA1C600127976 /* Icon-Small@2x.png */,
+				802FA037190EA1C600127976 /* Icon.png */,
+				802FA038190EA1C600127976 /* Icon@2x.png */,
+				802FA039190EA1C600127976 /* iTunesArtwork.png */,
+				802FA03A190EA1C600127976 /* iTunesArtwork@2x.png */,
+			);
+			path = icons_ios7;
 			sourceTree = "<group>";
 		};
 		808B61B117B99FA9009D4D90 /* project */ = {
@@ -211,6 +263,7 @@
 			children = (
 				80F4627B18948C0400DBE565 /* launch_images */,
 				80F4623D1891896000DBE565 /* phenylacetylcarbinol.mol */,
+				802FA02A190EA1C600127976 /* icons_ios7 */,
 				80F4623B1891889600DBE565 /* alprazolam.mol */,
 				80F46239189186BD00DBE565 /* methylphenidat.mol */,
 				8098F3BB18779A5700741EC2 /* amino_acids.sqlite */,
@@ -314,6 +367,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				80F4623A189186BD00DBE565 /* methylphenidat.mol in Resources */,
+				802FA048190EA1C600127976 /* Icon@2x.png in Resources */,
 				801F3E90181F122C00BA3E33 /* methane.mol in Resources */,
 				8098F3BC18779A5700741EC2 /* amino_acids.sqlite in Resources */,
 				80F4623C1891889600DBE565 /* alprazolam.mol in Resources */,
@@ -323,18 +377,32 @@
 				80F4629218948D7500DBE565 /* Default@2x.png in Resources */,
 				808B61CE17B99FA9009D4D90 /* InfoPlist.strings in Resources */,
 				808B61D017B99FA9009D4D90 /* MainStoryboard_iPhone.storyboard in Resources */,
+				802FA03D190EA1C600127976 /* Icon-60.png in Resources */,
+				802FA03F190EA1C600127976 /* Icon-72.png in Resources */,
+				802FA04A190EA1C600127976 /* iTunesArtwork@2x.png in Resources */,
+				802FA047190EA1C600127976 /* Icon.png in Resources */,
 				80E7BBD41826C9AB00638C71 /* MenuViewController.xib in Resources */,
+				802FA041190EA1C600127976 /* Icon-76.png in Resources */,
+				802FA03B190EA1C600127976 /* Icon-40.png in Resources */,
+				802FA040190EA1C600127976 /* Icon-72@2x.png in Resources */,
 				80D534CA1831713900AB3003 /* amino_acids in Resources */,
 				801F3E8F181F122C00BA3E33 /* propane.mol in Resources */,
+				802FA044190EA1C600127976 /* Icon-Small-50@2x.png in Resources */,
+				802FA03E190EA1C600127976 /* Icon-60@2x.png in Resources */,
+				802FA049190EA1C600127976 /* iTunesArtwork.png in Resources */,
 				80F4623E1891896000DBE565 /* phenylacetylcarbinol.mol in Resources */,
+				802FA046190EA1C600127976 /* Icon-Small@2x.png in Resources */,
 				808B61E617B9A1A0009D4D90 /* meth.mol in Resources */,
 				808B61E917B9A1A0009D4D90 /* sphere.obj in Resources */,
-				80F4626518948BC600DBE565 /* icons_and_launch.xcassets in Resources */,
+				802FA045190EA1C600127976 /* Icon-Small.png in Resources */,
 				808B61EA17B9A1A0009D4D90 /* sphere_smooth.obj in Resources */,
 				808B61EB17B9A1A0009D4D90 /* water.mol in Resources */,
 				801F3E8E181F122C00BA3E33 /* acetic_acid.mol in Resources */,
 				808B61ED17BA8FED009D4D90 /* sf6.mol in Resources */,
+				802FA03C190EA1C600127976 /* Icon-40@2x.png in Resources */,
 				808B61EF17BA923D009D4D90 /* atp.mol in Resources */,
+				802FA043190EA1C600127976 /* Icon-Small-50.png in Resources */,
+				802FA042190EA1C600127976 /* Icon-76@2x.png in Resources */,
 				808B61F117BA94B2009D4D90 /* aspirin.mol in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,7 +479,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -436,7 +504,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -447,12 +515,11 @@
 		8028E18517AD080D00EFBE74 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "project/3DMolecules-Prefix.pch";
 				INFOPLIST_FILE = "project/3DMolecules-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = 3DMolecules;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -462,12 +529,11 @@
 		8028E18617AD080D00EFBE74 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "project/3DMolecules-Prefix.pch";
 				INFOPLIST_FILE = "project/3DMolecules-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = 3DMolecules;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
