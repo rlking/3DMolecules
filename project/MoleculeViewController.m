@@ -9,6 +9,8 @@
 #import "MoleculeViewController.h"
 #import "WaveObject.h"
 #import "MolObject.h"
+#import <OpenGLES/ES3/gl.h>
+#import <OpenGLES/ES3/glext.h>
 
 const GLfloat axisLines[] = {
     1.0f, 1.0f, 1.0f, // 1. point
@@ -51,7 +53,7 @@ static WaveObject *sphere;
 {
     [super viewDidLoad];
     
-    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES3];
     
     self.effects = [NSMutableArray array];
     
@@ -160,8 +162,8 @@ float _lastPy;
     
     glEnable(GL_DEPTH_TEST);
     
-    glGenVertexArraysOES(1, &_vertexArray);
-    glBindVertexArrayOES(_vertexArray);
+    glGenVertexArrays(1, &_vertexArray);
+    glBindVertexArray(_vertexArray);
 
     glGenBuffers(1, &_vertexBuffer);
     glBindBuffer(GL_ARRAY_BUFFER, _vertexBuffer);
@@ -175,7 +177,7 @@ float _lastPy;
     glEnableVertexAttribArray(GLKVertexAttribNormal);
     glVertexAttribPointer(GLKVertexAttribNormal, 3, GL_FLOAT, GL_FALSE, 0, 0);
     
-    glBindVertexArrayOES(0);
+    glBindVertexArray(0);
 }
 
 - (void)tearDownGL
@@ -184,7 +186,7 @@ float _lastPy;
     
     glDeleteBuffers(1, &_vertexBuffer);
     glDeleteBuffers(1, &_normalBuffer);
-    glDeleteVertexArraysOES(1, &_vertexArray);
+    glDeleteVertexArrays(1, &_vertexArray);
     
     [self.effects removeAllObjects];
 }
@@ -231,7 +233,7 @@ float _lastPy;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     
-    glBindVertexArrayOES(_vertexArray);
+    glBindVertexArray(_vertexArray);
     
     if(sphere) {
     for(GLKBaseEffect *effect in self.effects){
